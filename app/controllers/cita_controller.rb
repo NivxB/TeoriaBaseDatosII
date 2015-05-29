@@ -69,6 +69,6 @@ class CitaController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def citum_params
-      params.require(:citum).permit(:auto_id, :Placa, :NombreCliente, :Estado, :TelefonoContacto, :FechaHoraEntrada, :asesor_id)
+      params.require(:citum).permit(:Placa, :NombreCliente, :Estado, :TelefonoContacto, :FechaHoraEntrada, :FechaEstimadaEntrega)
     end
 end

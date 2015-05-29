@@ -69,6 +69,6 @@ class MecanicosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mecanico_params
-      params.require(:mecanico).permit(:asesor_id, :NombreMecanico, :ApellidoMecanico, :NumeroTelefono)
+      params.require(:mecanico).permit(:NombreMecanico, :ApellidoMecanico, :NumeroTelefono)
     end
 end

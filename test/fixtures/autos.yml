@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  Placa: MyString
   Modelo: MyString
   NumeroMotor: MyString
 
 two:
+  Placa: MyString
   Modelo: MyString
   NumeroMotor: MyString

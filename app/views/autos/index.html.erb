@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Placa</th>
       <th>Modelo</th>
       <th>Numeromotor</th>
       <th colspan="3"></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @autos.each do |auto| %>
       <tr>
+        <td><%= auto.Placa %></td>
         <td><%= auto.Modelo %></td>
         <td><%= auto.NumeroMotor %></td>
         <td><%= link_to 'Show', auto %></td>

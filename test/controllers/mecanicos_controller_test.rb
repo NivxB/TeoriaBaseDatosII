@@ -18,7 +18,7 @@ class MecanicosControllerTest < ActionController::TestCase
 
   test "should create mecanico" do
     assert_difference('Mecanico.count') do
-      post :create, mecanico: { ApellidoMecanico: @mecanico.ApellidoMecanico, NombreMecanico: @mecanico.NombreMecanico, NumeroTelefono: @mecanico.NumeroTelefono, asesor_id: @mecanico.asesor_id }
+      post :create, mecanico: { ApellidoMecanico: @mecanico.ApellidoMecanico, NombreMecanico: @mecanico.NombreMecanico, NumeroTelefono: @mecanico.NumeroTelefono }
     end
 
     assert_redirected_to mecanico_path(assigns(:mecanico))
@@ -35,7 +35,7 @@ class MecanicosControllerTest < ActionController::TestCase
   end
 
   test "should update mecanico" do
-    patch :update, id: @mecanico, mecanico: { ApellidoMecanico: @mecanico.ApellidoMecanico, NombreMecanico: @mecanico.NombreMecanico, NumeroTelefono: @mecanico.NumeroTelefono, asesor_id: @mecanico.asesor_id }
+    patch :update, id: @mecanico, mecanico: { ApellidoMecanico: @mecanico.ApellidoMecanico, NombreMecanico: @mecanico.NombreMecanico, NumeroTelefono: @mecanico.NumeroTelefono }
     assert_redirected_to mecanico_path(assigns(:mecanico))
   end
 

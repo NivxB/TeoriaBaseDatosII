@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-	skip_before_filter :verify_authenticity_token
+  skip_before_filter  :verify_authenticity_token
   def agregarMecanico
     @allAsesores=Asesor.all
   end
@@ -14,13 +14,11 @@ class WelcomeController < ApplicationController
 
   def actuaMecanico
     @selectMeca= Mecanico.find_by(:id=>params[:idMeca])
-    @selectMeca.update(:asesor_id=>params[:asesorid],:NombreMecanico=>params[:nameMeca], :ApellidoMecanico=>params[:apellidoMeca], :NumeroTelefono=>params[:telefonoMeca])
     render plain: "Bien"
   end
 
   def actuaAsesor
     @selectAsesor = Asesor.find(params[:idAse])
-    @selectAsesor.update(:NombreAsesor=>params[:nombreAse], :ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse])
     render plain: "Bien"
   end
 
@@ -38,7 +36,6 @@ class WelcomeController < ApplicationController
   end
 
   def nuevoMecanico
-     @nuevoMecanico =Mecanico.new(:asesor_id => params[:asesorid], :NombreMecanico => params[:nombreMeca], :ApellidoMecanico => params[:apellidoMeca], :NumeroTelefono => params[:telefonoMeca], :created_at=> Time.new.inspect)
     if @nuevoMecanico.save
       render plain: "Mecanico creado exitosamente con el Id de Mecanico :  #{@nuevoMecanico.id} "
     else
@@ -63,46 +60,7 @@ class WelcomeController < ApplicationController
   end
 
  def nuevaCita
-  /tipo=0 es mantenimiento /
-  /INSERT INTO cita_mecanicos VALUES()/
- 	@nuevaCita = Citum.new(:asesor_id => params[:asesorid] ,:auto_id => params[:autoid] , :Placa => Auto.find_by(:id=>params[:autoid]).Placa,:NombreCliente => params[:nombreCliente],:Estado => "INGRESADO",:TelefonoContacto => params[:telefonoContacto],:FechaHoraEntrada => Time.new.inspect)
- 	@Mecan = params[:Mecan]
-  @Mecan = @Mecan.split("|")
-  if @nuevaCita.save
-	#Mymailer.send_email(Cliente.first()).deliver
-	#@client= Cliente.find_by_NombreCliente(params[:nombreCliente])
-	#@client = Cliente.first()	
-	puts '-----------------------------------------------------------------------------'
-	#puts @client.NombreCliente
-    for i in 0..(@Mecan.count - 1)
-      string = ""
-      string = "INSERT INTO cita_mecanicos VALUES(#{@nuevaCita.id},#{@Mecan[i]})"
-        Citum.connection.execute(string)
-    end
-    if (params[:Tipo] == 0)
-      @nuevaCita.Servicio.create(Tipo: params[:Tipo],Descripcion: params[:Desc])
-    else
-      @Desc = params[:Desc]
-      @Desc = @Desc.split("|")
-      for i in 0..(@Desc.count - 1)
-        @nuevaCita.Servicio.create(Tipo: params[:Tipo],Descripcion: @Desc[i])
-      end
-    end
-
-    Mymailer.send_email(Cliente.find(Auto.find(@nuevaCita.auto_id).cliente_id)).deliver
-    render plain: "Cita creada exitosamente con el Id de Cita :  #{@nuevaCita.id} "
-  else
-    render plain: "Error"
-  end
- 	/if @nuevaCita.save?
- 		render plain: "Cita creada exitosamente con el Id de Cita : " + @nuevaCita.id
- 	else
- 		render plain: "Error al guardar la cita"
- 	end
- 	/
-#@cli = Cliente.find_by(:NombreCliente=> params[:nombreCliente].split[0])
-#Mymailer.send_email(Cliente.find_by(:NombreCliente=> params[:nombreCliente].split[0])).deliver
-#puts @cli.Email
+  
  end
 
  def newVehiculo
@@ -110,7 +68,6 @@ class WelcomeController < ApplicationController
  end
 
  def nuevoVehiculo
-    @nuevoCarro =Auto.new(:cliente_id => params[:cliente_id], :Placa => params[:placaAuto], :Modelo => params[:modeloAuto], :NumeroMotor => params[:numeroAuto])
     if @nuevoCarro.save
       render plain: "Vehiculo creado exitosamente con el Id de Vehiculo :  #{@nuevoCarro.id} "
     else
@@ -125,7 +82,6 @@ class WelcomeController < ApplicationController
 
  def modificarVehiculo
     @nuevoCarro = Auto.find_by(:Placa => params[:placaAuto])
-    @nuevoCarro.update(:cliente_id => params[:cliente_id], :Placa => params[:placaAuto], :Modelo => params[:modeloAuto], :NumeroMotor => params[:numeroAuto])
     render plain: "Vehiculo modificado exitosamente con el Id de Vehiculo :  #{@nuevoCarro.id} "
  end
 
@@ -176,5 +132,4 @@ class WelcomeController < ApplicationController
     @selectedCita.update(:Estado => params[:Estado] , :FechaEstimadaEntrega => params[:PosibleDate])
     render plain: "Estado actualizado"
   end
-
 end

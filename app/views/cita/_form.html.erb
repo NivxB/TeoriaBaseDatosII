@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :auto_id %><br>
-    <%= f.number_field :auto_id %>
-  </div>
-  <div class="field">
     <%= f.label :Placa %><br>
     <%= f.text_field :Placa %>
   </div>
@@ -36,8 +32,8 @@
     <%= f.datetime_select :FechaHoraEntrada %>
   </div>
   <div class="field">
-    <%= f.label :asesor_id %><br>
-    <%= f.number_field :asesor_id %>
+    <%= f.label :FechaEstimadaEntrega %><br>
+    <%= f.datetime_select :FechaEstimadaEntrega %>
   </div>
   <div class="actions">
     <%= f.submit %>

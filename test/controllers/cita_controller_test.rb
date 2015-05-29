@@ -18,7 +18,7 @@ class CitaControllerTest < ActionController::TestCase
 
   test "should create citum" do
     assert_difference('Citum.count') do
-      post :create, citum: { Estado: @citum.Estado, FechaHoraEntrada: @citum.FechaHoraEntrada, NombreCliente: @citum.NombreCliente, Placa: @citum.Placa, TelefonoContacto: @citum.TelefonoContacto, asesor_id: @citum.asesor_id, auto_id: @citum.auto_id }
+      post :create, citum: { Estado: @citum.Estado, FechaEstimadaEntrega: @citum.FechaEstimadaEntrega, FechaHoraEntrada: @citum.FechaHoraEntrada, NombreCliente: @citum.NombreCliente, Placa: @citum.Placa, TelefonoContacto: @citum.TelefonoContacto }
     end
 
     assert_redirected_to citum_path(assigns(:citum))
@@ -35,7 +35,7 @@ class CitaControllerTest < ActionController::TestCase
   end
 
   test "should update citum" do
-    patch :update, id: @citum, citum: { Estado: @citum.Estado, FechaHoraEntrada: @citum.FechaHoraEntrada, NombreCliente: @citum.NombreCliente, Placa: @citum.Placa, TelefonoContacto: @citum.TelefonoContacto, asesor_id: @citum.asesor_id, auto_id: @citum.auto_id }
+    patch :update, id: @citum, citum: { Estado: @citum.Estado, FechaEstimadaEntrega: @citum.FechaEstimadaEntrega, FechaHoraEntrada: @citum.FechaHoraEntrada, NombreCliente: @citum.NombreCliente, Placa: @citum.Placa, TelefonoContacto: @citum.TelefonoContacto }
     assert_redirected_to citum_path(assigns(:citum))
   end
 

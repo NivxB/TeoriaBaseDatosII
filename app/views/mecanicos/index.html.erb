@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Asesor</th>
       <th>Nombremecanico</th>
       <th>Apellidomecanico</th>
       <th>Numerotelefono</th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @mecanicos.each do |mecanico| %>
       <tr>
-        <td><%= mecanico.asesor_id %></td>
         <td><%= mecanico.NombreMecanico %></td>
         <td><%= mecanico.ApellidoMecanico %></td>
         <td><%= mecanico.NumeroTelefono %></td>

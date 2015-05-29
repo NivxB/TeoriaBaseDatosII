@@ -18,7 +18,7 @@ class AutosControllerTest < ActionController::TestCase
 
   test "should create auto" do
     assert_difference('Auto.count') do
-      post :create, auto: { Modelo: @auto.Modelo, NumeroMotor: @auto.NumeroMotor }
+      post :create, auto: { Modelo: @auto.Modelo, NumeroMotor: @auto.NumeroMotor, Placa: @auto.Placa }
     end
 
     assert_redirected_to auto_path(assigns(:auto))
@@ -35,7 +35,7 @@ class AutosControllerTest < ActionController::TestCase
   end
 
   test "should update auto" do
-    patch :update, id: @auto, auto: { Modelo: @auto.Modelo, NumeroMotor: @auto.NumeroMotor }
+    patch :update, id: @auto, auto: { Modelo: @auto.Modelo, NumeroMotor: @auto.NumeroMotor, Placa: @auto.Placa }
     assert_redirected_to auto_path(assigns(:auto))
   end
 
