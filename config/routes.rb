@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+   get '/agregarCliente' => 'welcome#agregarCliente'
    get '/agregarMecanico' => 'welcome#agregarMecanico'
    get '/Seguimiento' => 'welcome#seguimiento'
    get '/homepage'=>'welcome#homepage'
@@ -29,7 +30,9 @@ Rails.application.routes.draw do
    post '/checkAuto' => 'welcome#checkAuto'
    post '/checkAsesorAuto' => 'welcome#checkAsesorAuto'
 
-   post '/nuevaCita' => 'welcome#nuevaCita'
+   post '/nuevaCitaCliente' => 'welcome#nuevaCitaCliente'
+   post '/nuevaCitaRegis' => 'welcome#nuevaCitaRegis'
+   post '/nuevoCliente' => 'welcome#nuevoCliente'
    post '/nuevoMecanico' =>'welcome#nuevoMecanico'
    post '/nuevoAsesor' => 'welcome#nuevoAsesor'
    post '/nuevoVehiculo' => 'welcome#nuevoVehiculo'

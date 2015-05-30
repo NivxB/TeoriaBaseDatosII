@@ -141,6 +141,7 @@
 		</br>	
 		<form>
 			<div align="center"class="input-group">
+				<input align="center"  id="AdminVehiCliente"type="text" class="form-control" name="VehCliente" placeholder="emailCliente" ></input>
 				<input align="center"  id="AdminVehiText"type="text" class="form-control" name="nombreVeh" placeholder="Placa del Vehículo" ></input>
 			</div>
 			
@@ -326,14 +327,14 @@
 			
 	     		url: "/checkAuto",
 	      		type: "POST",
-	      		data: {placaVeh: $("#AdminVehiText").val()},
+	      		data: {placaVeh: $("#AdminVehiText").val(),emailCliente: $("#AdminVehiCliente").val()},
 	      		success: function(data){                
   				if (data == "true"){
-  					var url = "/modAuto?placaVeh=" + $("#AdminVehiText").val()
+  					var url = "/modAuto?placaVeh=" + $("#AdminVehiText").val()+"&emailCliente="+ $("#AdminVehiCliente").val()
   					window.location.href=url
 				}
 				else{
-					alert("Ese automovil no ha sido ingresado")				
+					alert("Ese automovil no ha sido ingresado o no esta registrado a su cuenta")				
 				}
 			}
   		});
@@ -360,14 +361,27 @@
 	});
 
     $("#CrearCli").click(function() {
-		var url = "/clientes/new"
+		var url = "/agregarCliente"
 		window.location.href=url
 
 	});
 
     $("#AgregarVehiButton").click(function(){
-    	var url = "/newVehiculo"
-    	window.location.href=url
+  		$.ajax({
+			
+	     		url: "/checkCliente",
+	      		type: "POST",
+	      		data: {emailCliente: $("#AdminVehiCliente").val()},
+	      		success: function(data){                
+  				if (data == "true"){
+  					var url = "/newVehiculo?emailCliente=" + $("#AdminVehiCliente").val()
+  					window.location.href=url
+				}
+				else{
+					alert("No se encuentra registrado")				
+				}
+			}
+  		});  
     });
 
 	$("#AgregarMecaButton").click(function() {

@@ -26,8 +26,17 @@ class WelcomeController < ApplicationController
     @selectAsesor = Asesor.find_by(:id=>params[:idAsesor])
   end
 
+  def nuevoCliente
+    @nuevoCliente = Cliente.new(NombreCliente: params[:nombreCliente], ApellidoCliente: params[:apellidoCliente], Email: params[:emailCliente], Direccion: params[:dirCliente])
+    if @nuevoCliente.save
+      render plain: "Cliente creado exitosamente recuerde iniciar sesion con su Email "
+    else
+      render plain: "Error"
+    end  
+  end
+
   def nuevoAsesor
-    @nuevoAsesor= Asesor.new(:NombreAsesor=>params[:nombreAse],:ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse], :created_at=>Time.new.inspect)
+    @nuevoAsesor= Asesor.new(:NombreAsesor=>params[:nombreAse],:ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse])
     if @nuevoAsesor.save
       render plain: "Asesor creado exitosamente con el Id de Asesor :  #{@nuevoAsesor.id} "
     else
@@ -36,7 +45,10 @@ class WelcomeController < ApplicationController
   end
 
   def nuevoMecanico
+    @AsesorDesignado = Asesor.find(params[:asesorid])
+    @nuevoMecanico = Mecanico.new(NombreMecanico: params[:nombreMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
     if @nuevoMecanico.save
+      @AsesorDesignado.Mecanico.push(@nuevoMecanico)
       render plain: "Mecanico creado exitosamente con el Id de Mecanico :  #{@nuevoMecanico.id} "
     else
       render plain: "Error"
@@ -52,10 +64,17 @@ class WelcomeController < ApplicationController
   	@selectedAsesor = Asesor.find_by(:id => @selectedCita.asesor_id)
   end
 
-  def newCita
+  def newCitaRegis
   	@selectedCliente = Cliente.find_by(:id => params[:idCliente])
   	@autosCliente = @selectedCliente.Auto
   	@allAsesores = Asesor.all
+    @allMecanicos = Mecanico.all
+  end
+
+  def newCitaCliente
+    @selectedCliente = Cliente.find_by(:id => params[:idCliente])
+    @autosCliente = @selectedCliente.Auto
+    @allAsesores = Asesor.all
     @allMecanicos = Mecanico.all
   end
 
@@ -64,11 +83,14 @@ class WelcomeController < ApplicationController
  end
 
  def newVehiculo
-  @allClientes = Cliente.all;
+  @Owner = Cliente.find_by(Email: params[:emailCliente])
  end
 
  def nuevoVehiculo
+    @Owner = Cliente.find_by(Email: params[:emailCliente])
+    @nuevoCarro = Auto.new(Placa: params[:placaAuto],NumeroMotor: params[:numeroAuto], Modelo: params[:modeloAuto])
     if @nuevoCarro.save
+      @Owner.Auto.push(@nuevoCarro)
       render plain: "Vehiculo creado exitosamente con el Id de Vehiculo :  #{@nuevoCarro.id} "
     else
       render plain: "Error"
@@ -76,7 +98,6 @@ class WelcomeController < ApplicationController
  end
 
  def modAuto
-  @allClientes = Cliente.all
   @selectedAuto = Auto.find_by(:Placa => params[:placaVeh])
  end
 
@@ -94,7 +115,7 @@ class WelcomeController < ApplicationController
   end
 
   def checkCliente
-  	if Cliente.where(:id => params[:idCliente]).blank?
+  	if Cliente.where(Email: params[:emailCliente]).blank?
 		 render plain: "false"		 
 	else
 		 render plain: "true"
@@ -102,10 +123,14 @@ class WelcomeController < ApplicationController
   end
 
   def checkAuto
-  if Auto.where(:Placa => params[:placaVeh]).blank?
+  if Cliente.where(Email: params[:emailCliente]).blank?
      render plain: "false"     
   else
-     render plain: "true"
+     if Cliente.where(Email: params[:emailCliente]).first.Auto.where(Placa: params[:placaVeh]).blank?
+        render plain: "false"
+     else 
+        render plain: "true"
+     end
   end
   end
 

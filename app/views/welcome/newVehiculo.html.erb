@@ -22,9 +22,6 @@
 		</nav>
 		<div id="AsesorIngresando">
 		<h2 align="center">Agregando Vehiculo</h2>
-		</br>
-			Propietario: <%= select("cliente", "auto", @allClientes.collect {|p| [ p.NombreCliente,p.id ]})%>
-		</br>
 			Placa del Auto: <input id= "placaAuto" type="text"></input>
 		</br>
 			Modelo del Auto: <input id= "modeloAuto" type= "text"></input>
@@ -63,7 +60,7 @@
   		$.ajax({
 	     		url: "/nuevoVehiculo",
 	      		type: "POST",
-	      		data: {cliente_id: $("#cliente_auto").val(), placaAuto: $("#placaAuto").val(), modeloAuto: $("#modeloAuto").val(), numeroAuto: $("#numeroAuto").val()},
+	      		data: {emailCliente: "<%= @Owner.Email %>",placaAuto: $("#placaAuto").val(), modeloAuto: $("#modeloAuto").val(), numeroAuto: $("#numeroAuto").val()},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);
