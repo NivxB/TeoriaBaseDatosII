@@ -39,62 +39,94 @@ text_field{
   display: block
 }
 
-ul li {
-  font: bold 12px/18px sans-serif;
-  display: inline-block;
-  margin-right: 0px;
-  background: #849A6A;
-  padding: 15px 20px;
-  color: #fff;
-  cursor: pointer;
-  -webkit-transition: all 0.2s;
-  -moz-transition: all 0.2s;
-  -ms-transition: all 0.2s;
-  -o-transition: all 0.2s;
-  transition: all 0.2s;
+body {
+  background:#e6e6e6;
 }
-ul li ul {
-  padding: 0;
+ 
+header {
+  width:90%;
+  max-width:1000px;
+  margin:auto;
+}
+ 
+nav {
+  background:#528fd5;
+  margin-top:20px;
+  position: relative;
+}
+ 
+nav ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+}
+ 
+nav > ul > li {
+  float:left;
+}
+ 
+nav ul li a {
+  text-decoration:none;
+  color:#fff;
+  display:block;
+  padding:10px 20px;
+}
+ 
+nav ul li a:hover {
+  background:#3669a3;
+}
+ 
+nav > ul > li:hover div {
+  display:table;
+}
+ 
+/*Submenu*/
+nav ul li div {
+  width:1000px;
   position: absolute;
-  z-index: 1;
-  top: 48px;
-  left: 0;
-  width: 150px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  display: none;
-  opacity: 0;
-  visibility: hidden;
-
-  -webkit-transiton: opacity 0.2s;
-  -moz-transition: opacity 0.2s;
-  -ms-transition: opacity 0.2s;
-  -o-transition: opacity 0.2s;
-  -transition: opacity 0.2s;
+  left:0;
+  background:#ccc;
+  box-sizing:border-box;
+  display:none;
 }
-ul li ul li { 
-  background: #555; 
-  display: block; 
-  color: #fff;
-  text-shadow: 0 -1px 0 #000;
-  z-index: 1;
+ 
+nav ul li div ul{
+  width:20%;
+  display:table-cell;
+  border-right:1px solid rgba(255,255,255,.5);
+  box-sizing:border-box;
 }
-ul li ul li:hover {
- background: #666;
-  }
-ul li:hover ul {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-
+ 
+nav ul li div ul:last-child {
+  border:none;
 }
-ul li:hover{
-	background: #666;
+ 
+nav ul li div ul .titulo {
+  background:#000;
+  color:#fff;
 }
-
-p{
-
+ 
+nav ul li div ul .titulo a {
+  color:#fff;
+  padding:10px 20px;
+}
+ 
+.titulo.azul {background:#3498db;}
+.titulo.verde{background:#27ae60;}
+.titulo.naranja {background:#e67e22;}
+.titulo.rojo {background:#c0392b; color:#000;}
+ 
+nav ul li div ul .titulo a:hover {
+  background:none;
+}
+ 
+nav ul li div ul li a {
+  color:#000;
+}
+ 
+nav ul li div ul li a:hover {
+  color:#fff;
 }
 #RegistrarCita{
 
@@ -173,7 +205,6 @@ p{
   
 }
 #homePrin{
-  background: #70756A;
   position: fixed;
   top: 23%;
   left: 10%;

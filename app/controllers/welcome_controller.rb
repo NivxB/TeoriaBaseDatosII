@@ -65,21 +65,32 @@ class WelcomeController < ApplicationController
   end
 
   def newCitaRegis
-  	@selectedCliente = Cliente.find_by(:id => params[:idCliente])
-  	@autosCliente = @selectedCliente.Auto
-  	@allAsesores = Asesor.all
-    @allMecanicos = Mecanico.all
+  	
   end
 
   def newCitaCliente
-    @selectedCliente = Cliente.find_by(:id => params[:idCliente])
-    @autosCliente = @selectedCliente.Auto
-    @allAsesores = Asesor.all
-    @allMecanicos = Mecanico.all
+
   end
 
- def nuevaCita
-  
+ def nuevaCitaCliente
+    @newCliente = Cliente.new(NombreCliente: params[:nombreCliente],ApellidoCliente: params[:apellidoCliente],Email: params[:emailCliente],Direccion: params[:dirCliente])
+    if @newCliente.save
+      @newAuto = Auto.new(Placa: params[:placaAuto],Modelo: params[:modeloAuto],NumeroMotor: params[:numeroAuto])
+      if @newAuto.save
+        @newCliente.Auto.push(@newAuto)
+        @newCita = Citum.new(Placa: @newAuto.Placa, NombreCliente: @newCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        if @newCita.save
+          @newAuto.Citum.push(@newCita)
+          render plain: "Cita creada exitosamente con el id " + @newCita.id
+        else
+          render plain: "false"
+        end
+      else
+        render plain: "false"
+      end
+    else
+      render plain: "false"
+    end
  end
 
  def newVehiculo

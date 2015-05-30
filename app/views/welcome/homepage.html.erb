@@ -10,164 +10,56 @@
 		<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
 		
-	<body data-spy="scroll" data-target=".navbar-collapse">
-		<nav id = "nav" class="navbar navbar-default">
-			<div id="logo">
-				<%= image_tag("ams.png", size: "100x100", alt: "") %>
-			</div>
-			<ul class="nav nav-tabs" id="Menu">
-				<li id ="homebut" role="presentation" class="right-button" type="Button">Home</li>
-				<li id ="CrearCli" role="presentation" class="right-button" type="Button">Crear Cliente
+	<body >
+		<nav>
+			<ul>
+				<li><a href="#" id="homebut">Home</a></li>
+				<li><a href="#">Programar Cita</a>
+					<div>
+						<ul>
+							<li class="titulo"><a href="">Cliente Registrado</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo azul"><a href="/newCitaCliente">Nuevo Cliente</a></li>
+						</ul>
+					</div>
 				</li>
-
-				<li id ="hi" role="presentation" class="right-button" type="Button">Administración Empleado
-				<ul id="menucombo">
-	  					<li id="AAcesor" type="Button">Administrar Asesor</li>
-	  					<li id="AMecanico" type="Button">Administrar Mecánico</li>
-	  					<li id="AVehi" type="Button">Administrar Vehículo</li>
-	  				</ul>
-	  			</li>
-	  			<li id ="hi" role="presentation" class="right-button" type="Button">Registro
-	  				<ul id="menucombo">
-	  					<li id="RCitas" type="Button">Registro Citas</li>
-	  					<li id="RVeh" type="Button">Registro Vehículo</li>
-	  				</ul>
-	  			</li>
-	  			<li id ="SeguimientoVehi" role="presentation" class="right-button" type="Button">Seguimiento</li>
-	  			<li id ="ContactBut" role="presentation" class="right-button" type="Button">Contacto</li>
+				<li><a href="#">Administrar</a>
+				<div>
+ 
+						<ul>
+							<li class="titulo"><a href="">Cliente</a></li>
+							<li><a href="">Crear</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo azul"><a href="">Vehiculo</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo verde"><a href="">Asesor</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+							<li><a href="">Asignar Cita</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo rojo"><a href="">Mecanico</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+						</ul>
+					</li>
+				</div>
+				<li><a href="#">Acerca de</a></li>
 			</ul>
+			<div id="homePrin">
+		<h1 align="Center" style="color: #000000">Home</h1>
+		<p align="Center" style="color: #000000">Proyecto de Teoría de Base de Datos I</p>
+	</div>
 		</nav>
-	<div id="RegistrarCita" style="width:800px; margin:0 auto;">
-		<h1>Registrar Cita</h1>
-			
-		<form>
-			<div class="input-group">
-				<input id="RCT1"type="text" class="form-control" name="nombreUsuario" placeholder="Clave Usuario" ></input>
-			</div>
-			
-			</br>
-			
-			
-			<button id="BuscarCli" type = "button" class="btn btn-lg btn" >
-					<span>Buscar</span>
-			</button>
-		
-		</form>
-	</div>
-	<div id="RegistrarVehi" style="width:800px; margin:0 auto;">
-		<h1>Registrar Vehículo</h1>
-			
-		<form>
-			<div class="input-group">
-				<input id="RCTP"type="text" class="form-control" name="claveAsesor" placeholder="Id de Asesor" ></input>
-				<input id="RCT2"type="text" class="form-control" name="ClaveVehiREG" placeholder="Placa de Auto" ></input>
-			</div>
-			
-			</br>
-			
-			
-			<button id="BuscarVeh" type="button" class="btn btn-lg btn" >
-					<span>Buscar</span>
-			</button>
-		
-		</form>
-	</div>
-	<div id="Seguimiento" style="width:800px; margin:0 auto;">
-		<h1>Seguimiento</h1>
-			
-		<form>
-			<div class="input-group">
-				<input id="RCT"type="text" class="form-control" name="ClaveCita" placeholder="Código de la Cita" ></input>
-			</div>
-			
-			</br>
-			
-			
-			<button id="BuscarVehSeguimiento" type="button" class="btn btn-lg btn" >
-					<span>Buscar</span>
-			</button>
-			
-		
-		</form>
-	</div>
-	<div id="adminmecanico" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Mecánicos</h1>
-		</br>	
-		<form>
-			<div align="center"class="input-group">
-				<input align="center"  id="AdminMecaText"type="text" class="form-control" name="nombreACE" placeholder="Clave Mecanico" ></input>
-			</div>
-			
-			</br>
-			</br>
-			
-			<button align="center" id="ModificarMecaButton" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
-
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarMecaButton" type="button" class="btn btn-lg btn"  >
-					<span>Agregar</span>
-			</button>
-		</form>
-	</div>
-	<div id="adminAcesor" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Asesores</h1>
-		</br>	
-		<form>
-			<div align="center"class="input-group">
-				<input align="center"  id="AAT"type="text" class="form-control" name="nombreVEH" placeholder="Clave Asesor" ></input>
-			</div>
-			
-			</br>
-			</br>
-			
-			<button align="center" id="MAB" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
-
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarAcesorButton" type="button" class="btn btn-lg btn"  >
-					<span>Agregar</span>
-			</button>
-		</form>
-	</div>
-	<div id="adminVehi" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Vehículos</h1>
-		</br>	
-		<form>
-			<div align="center"class="input-group">
-				<input align="center"  id="AdminVehiCliente"type="text" class="form-control" name="VehCliente" placeholder="emailCliente" ></input>
-				<input align="center"  id="AdminVehiText"type="text" class="form-control" name="nombreVeh" placeholder="Placa del Vehículo" ></input>
-			</div>
-			
-			</br>
-			</br>
-			
-			<button align="center" id="ModificarVehiButton" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
-
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarVehiButton" type="button" class="btn btn-lg btn"  >
-					<span>Agregar</span>
-			</button>
-		</form>
-	</div>
-	<div id="homePrin">
-		<h1 align="Center" style="color: #fff;">Home</h1>
-		<p align="Center" style="color: #fff;">Proyecto de Teoría de Base de Datos I</p>
-	</div>
-	<div id="ContPrin">
-		<h1 align="Center" style="color: #fff;">Contacto</h1>
-		<p align="Center" style="color: #fff;">Email: kevin_bara@unitec.edu</p>
-	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/
 	jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files
