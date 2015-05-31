@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
    post '/checkCita' => 'welcome#checkCita'
    post '/checkCliente' => 'welcome#checkCliente'
+      post '/checkAsesor' => 'welcome#checkAsesor'
    post '/checkAuto' => 'welcome#checkAuto'
    post '/checkAsesorAuto' => 'welcome#checkAsesorAuto'
 

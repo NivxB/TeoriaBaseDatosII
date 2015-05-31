@@ -4,6 +4,6 @@ class CitaMailer < ApplicationMailer
 	def confirmarCita(cliente,cita)
 		@Cliente = cliente
 		@Cita = cita
-		mail(to: @Cliente.Email, subject: 'Confirmacion Cita'	
+		mail(to: @Cliente.Email, subject: 'Confirmacion Cita')
 	end
 end

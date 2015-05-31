@@ -159,7 +159,7 @@
 		</form>
 	</div>
 	<div id="homePrin">
-		<h1 align="Center" style="color: #fff;">Home</h1>
+		<h1 align="Center" style="color: #fff;">Bienvenido</h1>
 		<p align="Center" style="color: #fff;">Proyecto de Teoría de Base de Datos I</p>
 	</div>
 	<div id="ContPrin">

@@ -1,62 +1,104 @@
 <!doctype html>
 <html>
 	<head>
+		<%= javascript_include_tag :defaults %>
+				<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
 		<title>Home</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script type="text/javascript" src="jquery.min.js"></script>
-		<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
-		<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
 		
-	<body data-spy="scroll" data-target=".navbar-collapse">
-		<nav id = "nav" class="navbar navbar-default">
-			<div id="logo">
-				<%= image_tag("ams.png", size: "100x100", alt: "") %>
-			</div>
-			<ul class="nav nav-tabs" id="Menu">
-				
-	  			<li id ="homebut" role="presentation" class="right-button" type="Button">Home</li>
-	  			<li id ="ContactBut" role="presentation" class="right-button" type="Button">Contacts</li>
-			</ul>
-		</nav>
+   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Isabella's Shop</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#" id="homebut">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cliente
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarCliente" id="">Registrarse</a></li>
+            <li><a href="#" id="listaddAuto">Agregar Vehiculo</a></li>
+            <li><a href="#" id="listmodAuto">Modificar Vehiculo</a></li>
+            <li><a href="#" id="listseguimientoCita">Seguimiento Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Programar Cita
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="listCitaRegis">Cliente Registrado</a></li>
+            <li><a href="/newCitaCliente" id="nuevaCitaCliente">Nuevo Cliente</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Asesor
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarAsesor" id="">Agregar Asesor</a></li>
+            <li><a href="#" id="listmodAsesor">Modificar Asesor</a></li>
+            <li><a href="#" id="listasigCita">Asignar Cita</a></li>
+            <li><a href="#" id="listcambiarEstado">Cambiar Estado Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Mecanico
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarMecanico" id="">Agregar Mecanico</a></li>
+            <li><a href="#" id="listmodMecanico">Modificar Mecanico</a></li>
+          </ul>
+        </li>
+        <li><a href="#" id="ConctacBut">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 	
-	<div id="homePrin">
+	<div id="ss" class="form-group" style="width:800px; margin:0 auto">
 		<h1 align="Center" >Nueva cita</h1>
 		<h2 align="Center" >
 		<p align="center">
-			Nombre: <input id= "nameCliente" type="text"></input>
+			Nombre: <input class="form-control" id= "nameCliente" type="text"></input>
 		</br>
-			Apellido: <input id= "apellidoCliente" type= "text"></input>
+			Apellido: <input class="form-control" id= "apellidoCliente" type= "text"></input>
 		</br>
-			Email:	<input id= "emailCliente" type= "text"></input>
+			Email:	<input class="form-control" id= "emailCliente" type= "text"></input>
 		<br>
-			Password:	<input id= "passwordCliente" type= "text"></input>
+			Password:	<input class="form-control" id= "passwordCliente" type= "text"></input>
 		</br>
-			Direccion:	<input id= "dirCliente" type= "text"></input>
+			Direccion:	<input class="form-control" id= "dirCliente" type= "text"></input>
 		</br>
-			Telefono Contacto: <input id= "telefonoContacto" type="text"></input>
+			Telefono Contacto: <input class="form-control" id= "telefonoContacto" type="text"></input>
 		<br>
-		Placa del Auto: <input id= "placaAuto" type="text"></input>
+		Placa del Auto: <input class="form-control" id= "placaAuto" type="text"></input>
 		</br>
-			Modelo del Auto: <input id= "modeloAuto" type= "text"></input>
+			Modelo del Auto: <input class="form-control" id= "modeloAuto" type= "text"></input>
 		</br>
-			Numero del Motor:	<input id= "numeroAuto" type= "text"></input>
+			Numero del Motor:	<input class="form-control" id= "numeroAuto" type= "text"></input>
 		</br>
-			Dia de la cita: <input id= "fechaCita" type= "date"></input>
+			Dia de la cita: <input class="form-control" id= "fechaCita" type= "date"></input>
 		</br>	
-			Hora: <input id= "horaCita" type= "time" min="07:00:00" max="15:00:00"></input>
+			Hora: <input class="form-control" id= "horaCita" type= "time" min="07:00:00" max="15:00:00"></input>
 		</br>
-		<input type="radio" name="tipo" value="0" onclick="selected()" checked="checked">Mantenimiento  <input type="radio" name="tipo" value="1" onclick="selected()">Reparacion
+		<input class="form-control" type="radio" name="tipo" value="0" onclick="selected()" checked="checked">Mantenimiento  <input class="form-control" type="radio" name="tipo" value="1" onclick="selected()">Reparacion
 
 		<br>
-		<select id="MantoSelect" name="M">
+		<select class="form-control" id="MantoSelect" name="M">
     		<option value="5000" selected="selected">5000</option>
     		<option value="10000">10000</option>
     		<option value="15000">15000</option>
     		<option value="20000">20000</option>
   		</select>
-		<select id="ReparacionSelect" name="R" multiple="true">
+		<select class="form-control" id="ReparacionSelect" name="R" multiple="true">
     		<option value="fallo del motor de arranque" selected="selected">fallo del motor de arranque</option>
     		<option value="fallo en el tren delantero">fallo en el tren delantero</option>
     		<option value="ruido cerca del motor">ruido cerca del motor</option>

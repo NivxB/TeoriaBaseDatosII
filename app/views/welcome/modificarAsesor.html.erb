@@ -2,31 +2,74 @@
 <html>
 <title>Home</title>
 <head>
+		<%= javascript_include_tag :defaults %>
+				<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
+		<title>Home</title>
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<script type="text/javascript" src="jquery.min.js"></script>
-		<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
-		<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
 		
-	<body data-spy="scroll" data-target=".navbar-collapse">
-		<nav id = "nav" class="navbar navbar-default">
-			<div id="logo">
-              <img src="assets/images/ams.png" HEIGHT="100" WIDTH="100"  alt="" />
-			</div>
-			<ul class="nav nav-tabs" id="Menu">
-				
-	  			<li id ="homebut" role="presentation" class="right-button" type="Button">Home</li>
-	  			<li id ="ContactBut" role="presentation" class="right-button" type="Button">Contacts</li>
-			</ul>
-		</nav>
-		<div id="AsesorIngresando">
+   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Isabella's Shop</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#" id="homebut">Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cliente
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarCliente" id="">Registrarse</a></li>
+            <li><a href="#" id="listaddAuto">Agregar Vehiculo</a></li>
+            <li><a href="#" id="listmodAuto">Modificar Vehiculo</a></li>
+            <li><a href="#" id="listseguimientoCita">Seguimiento Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Programar Cita
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="listCitaRegis">Cliente Registrado</a></li>
+            <li><a href="/newCitaCliente" id="nuevaCitaCliente">Nuevo Cliente</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Asesor
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarAsesor" id="">Agregar Asesor</a></li>
+            <li><a href="#" id="listmodAsesor">Modificar Asesor</a></li>
+            <li><a href="#" id="listasigCita">Asignar Cita</a></li>
+            <li><a href="#" id="listcambiarEstado">Cambiar Estado Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Mecanico
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarMecanico" id="">Agregar Mecanico</a></li>
+            <li><a href="#" id="listmodMecanico">Modificar Mecanico</a></li>
+          </ul>
+        </li>
+        <li><a href="#" id="ConctacBut">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+		<div id="AsesorIngresando" class="form-group">
 		<h2 align="center">Agregando Asesor</h2>
-			Nombre del Asesor: <input id= "nameAse" type="text" value="<%= (@selectAsesor.NombreAsesor)%> "></input>
+			Nombre del Asesor: <input class="form-control" id= "nameAse" type="text" value="<%= (@selectAsesor.NombreAsesor)%> "></input>
 		</br>
-			Apellido del Asesor: <input id= "apeAse" type= "text" value="<%= (@selectAsesor.ApellidoAsesor)%> "></input>
+			Apellido del Asesor: <input class="form-control" id= "apeAse" type= "text" value="<%= (@selectAsesor.ApellidoAsesor)%> "></input>
 		</br>
-			Numero de Telefono:	<input id= "telAse" type= "text" value="<%= (@selectAsesor.NumeroTelefono)%> "></input>
+			Numero de Telefono:	<input class="form-control" id= "telAse" type= "text" value="<%= (@selectAsesor.NumeroTelefono)%> "></input>
 		</br>
 			<button align="center" id="createAsesor" type="button" class="btn btn-lg btn"  >
 					<span>Actualizar Asesor</span>

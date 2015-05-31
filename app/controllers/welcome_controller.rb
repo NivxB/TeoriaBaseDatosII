@@ -18,7 +18,7 @@ class WelcomeController < ApplicationController
   end
 
   def actuaAsesor
-    @selectAsesor = Asesor.find(params[:idAse])
+    @selectAsesor = Asesor.find(params[:idAse].to_f)
     @selectAsesor.update(NombreAsesor: params[:nombreAse],ApellidoAsesor: params[:apellidoAse], NumeroTelefono: params[:telefonoAse])
     render plain: "Bien"
   end
@@ -37,7 +37,12 @@ class WelcomeController < ApplicationController
   end
 
   def nuevoAsesor
-    @nuevoAsesor= Asesor.new(:NombreAsesor=>params[:nombreAse],:ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse])
+    if Asesor.count > 0
+    @nuevoAsesor= Asesor.new(id: Asesor.last.id + 1 ,:NombreAsesor=>params[:nombreAse],:ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse])
+    else
+    @nuevoAsesor= Asesor.new(id: 0 ,:NombreAsesor=>params[:nombreAse],:ApellidoAsesor=>params[:apellidoAse],:NumeroTelefono=>params[:telefonoAse])
+    end
+
     if @nuevoAsesor.save
       render plain: "Asesor creado exitosamente con el Id de Asesor :  #{@nuevoAsesor.id} "
     else
@@ -46,8 +51,12 @@ class WelcomeController < ApplicationController
   end
 
   def nuevoMecanico
-    @AsesorDesignado = Asesor.find(params[:asesorid])
-    @nuevoMecanico = Mecanico.new(NombreMecanico: params[:nombreMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
+    @AsesorDesignado = Asesor.find(params[:asesorid].to_f)
+    if Mecanico.count > 0
+    @nuevoMecanico = Mecanico.new(id: Mecanico.last.id + 1 ,NombreMecanico: params[:nombreMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
+    else
+    @nuevoMecanico = Mecanico.new(id: 0 ,NombreMecanico: params[:nombreMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
+    end
     if @nuevoMecanico.save
       @AsesorDesignado.Mecanico.push(@nuevoMecanico)
       render plain: "Mecanico creado exitosamente con el Id de Mecanico :  #{@nuevoMecanico.id} "
@@ -78,23 +87,33 @@ class WelcomeController < ApplicationController
     @selectedCliente = Cliente.find(params[:idCliente])
     if params[:placaAuto] == "nil"
       @selectedCar = Auto.find(params[:idAuto])
-      @newCita = Citum.new(Placa: @selectedCar.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+      
+      if Citum.count > 0
+      @newCita = Citum.new(id: Citum.last.id + 1 , Placa: @selectedCar.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+      else
+      @newCita = Citum.new(id: 0 , Placa: @selectedCar.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+      end 
+
       if @newCita.save
           @selectedCar.Citum.push(@newCita)
           CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
-          render plain: "Cita creada exitosamente con el id " + @newCita.id
+          render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"
         end
     else
       @newAuto = Auto.new(Placa: params[:placaAuto],Modelo: params[:modeloAuto],NumeroMotor: params[:numeroAuto])
       if @newAuto.save
-        @newCliente.Auto.push(@newAuto)
-        @newCita = Citum.new(Placa: @newAuto.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        @selectedCliente.Auto.push(@newAuto)
+        if Citum.count > 0
+        @newCita = Citum.new(id: Citum.last.id + 1 , Placa: @newAuto.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        else
+        @newCita = Citum.new(id: 0 , Placa: @newAuto.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        end
         if @newCita.save
           @newAuto.Citum.push(@newCita)
           CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
-          render plain: "Cita creada exitosamente con el id " + @newCita.id
+          render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"
         end
@@ -108,10 +127,16 @@ class WelcomeController < ApplicationController
       @newAuto = Auto.new(Placa: params[:placaAuto],Modelo: params[:modeloAuto],NumeroMotor: params[:numeroAuto])
       if @newAuto.save
         @newCliente.Auto.push(@newAuto)
-        @newCita = Citum.new(Placa: @newAuto.Placa, NombreCliente: @newCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        
+        if Citum.count > 0
+        @newCita = Citum.new(id: Citum.last.id + 1 , Placa: @newAuto.Placa, NombreCliente: @newCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        else
+        @newCita = Citum.new(id: 0 , Placa: @newAuto.Placa, NombreCliente: @newCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        end 
+
         if @newCita.save
           @newAuto.Citum.push(@newCita)
-          render plain: "Cita creada exitosamente con el id " + @newCita.id
+          render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"
         end
@@ -165,6 +190,14 @@ class WelcomeController < ApplicationController
 	end
   end
 
+   def checkAsesor
+    if Asesor.where(id: params[:idAsesor]).blank?
+     render plain: "false"     
+  else
+     render plain: "true"
+  end
+  end
+
   def checkAuto
   if Cliente.where(Email: params[:emailCliente]).and(Password: params[:passwordCliente]).blank?
      render plain: "false"     
@@ -181,7 +214,7 @@ class WelcomeController < ApplicationController
     if Asesor.where(:id => params[:asesorId]).blank?
        render plain: "false"     
     else
-        if Asesor.find(params[:asesorId]).Citum.where(:Placa => params[:placaVeh]).blank?
+        if Asesor.find(params[:asesorId].to_f).Citum.where(:id => params[:idCita].to_f).blank?
           render plain: "false"
         else
           render plain: "true"
@@ -191,7 +224,7 @@ class WelcomeController < ApplicationController
   end
 
   def cambiarEstado
-    @selectedAsesor = Asesor.find(params[:asesorId])
+    @selectedAsesor = Asesor.find(params[:asesorId].to_f)
     @Citas = @selectedAsesor.Citum.all
     @ListaEstados = Array.new(@Citas.count)
 
@@ -202,31 +235,31 @@ class WelcomeController < ApplicationController
   end
 
   def updateEstado
-    @selectedCita = Citum.find(params[:idCita])
+    @selectedCita = Citum.find(params[:idCita].to_f)
     @selectedCita.update(:Estado => params[:Estado] , :FechaEstimadaEntrega => params[:PosibleDate])
     render plain: "Estado actualizado"
   end
 
 
 def asigAsesor
-  @Asesor = Asesor.find(params[:idAsesor])
+  @Asesor = Asesor.find(params[:idAsesor].to_f)
   @Citas = Citum.where(Asesor_id: nil).all
   @Mecanicos = @Asesor.Mecanico.all
 end
 
 def setCita
-  @Asesor = Asesor.find(params[:idAsesor])
+  @Asesor = Asesor.find(params[:idAsesor].to_f)
   @Mecan = params[:idMecanicos]
   @Mecan = @Mecan.split("|")
   @Citas = params[:idCitas]
   @Citas = @Citas.split("|")
 
   for i in 0..(@Citas.count - 1)
-    @currentCita = Citum.find(@Citas[i])
+    @currentCita = Citum.find(@Citas[i].to_f)
     @currentCita.update(Estado: "INGRESADO")
     @Asesor.Citum.push(@currentCita)
     for i in 0..(@Mecan.count - 1)
-      @currentMeca = Mecanico.find(@Mecan[i])
+      @currentMeca = Mecanico.find(@Mecan[i].to_f)
       @currentCita.Mecanico.push(@currentMeca)
     end
   end
