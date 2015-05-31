@@ -27,9 +27,11 @@
 		</br>
 			Apellido: <input id= "apellidoCliente" type= "text"></input>
 		</br>
+			Direccion:	<input id= "dirCliente" type= "text"></input>
+		<br>
 			Email:	<input id= "emailCliente" type= "text"></input>
 		</br>
-			Direccion:	<input id= "dirCliente" type= "text"></input>
+			Password: <input id="passwordCliente" type="text">
 		</br>
 			<button align="center" id="createCliente" type="button" class="btn btn-lg btn"  >
 					<span>Crear Cliente</span>
@@ -63,7 +65,7 @@
   		$.ajax({
 	     		url: "/nuevoCliente",
 	      		type: "POST",
-	      		data: {nombreCliente: $("#nameCliente").val(), emailCliente: $("#emailCliente").val(), dirCliente: $("#dirCliente").val(), apellidoCliente: $("#apellidoCliente").val()},
+	      		data: {nombreCliente: $("#nameCliente").val(), emailCliente: $("#emailCliente").val(), dirCliente: $("#dirCliente").val(), apellidoCliente: $("#apellidoCliente").val(),passwordCliente: $("#passwordCliente")},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);

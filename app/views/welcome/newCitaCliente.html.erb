@@ -30,6 +30,8 @@
 			Apellido: <input id= "apellidoCliente" type= "text"></input>
 		</br>
 			Email:	<input id= "emailCliente" type= "text"></input>
+		<br>
+			Password:	<input id= "passwordCliente" type= "text"></input>
 		</br>
 			Direccion:	<input id= "dirCliente" type= "text"></input>
 		</br>
@@ -132,7 +134,7 @@
   		$.ajax({
 	     		url: "/nuevaCitaCliente",
 	      		type: "POST",
-	      		data: {nombreCliente: $("#nameCliente").val(), apellidoCliente: $("#apellidoCliente").val(),emailCliente: $("#emailCliente").val(), dirCliente: $("#dirCliente").val(),telefonoContacto: $("#telefonoContacto").val(),placaAuto: $("#placaAuto").val(),modeloAuto: $("#modeloAuto").val(),numeroAuto: $("#numeroAuto").val(),fechaCita: $("#fechaCita").val(),horaCita: $("#horaCita").val() , Tipo: $('input[name=tipo]:checked').val(), Desc: Desc},
+	      		data: {nombreCliente: $("#nameCliente").val(), apellidoCliente: $("#apellidoCliente").val(),emailCliente: $("#emailCliente").val(), dirCliente: $("#dirCliente").val(),telefonoContacto: $("#telefonoContacto").val(),placaAuto: $("#placaAuto").val(),modeloAuto: $("#modeloAuto").val(),numeroAuto: $("#numeroAuto").val(),fechaCita: $("#fechaCita").val(),horaCita: $("#horaCita").val() , Tipo: $('input[name=tipo]:checked').val(), Desc: Desc, passwordCliente: $("#passwordCliente").val()},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);

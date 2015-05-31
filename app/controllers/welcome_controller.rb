@@ -28,7 +28,7 @@ class WelcomeController < ApplicationController
   end
 
   def nuevoCliente
-    @nuevoCliente = Cliente.new(NombreCliente: params[:nombreCliente], ApellidoCliente: params[:apellidoCliente], Email: params[:emailCliente], Direccion: params[:dirCliente])
+    @nuevoCliente = Cliente.new(NombreCliente: params[:nombreCliente], ApellidoCliente: params[:apellidoCliente], Email: params[:emailCliente], Direccion: params[:dirCliente], Password: params[:passwordCliente])
     if @nuevoCliente.save
       render plain: "Cliente creado exitosamente recuerde iniciar sesion con su Email "
     else
@@ -81,6 +81,7 @@ class WelcomeController < ApplicationController
       @newCita = Citum.new(Placa: @selectedCar.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
       if @newCita.save
           @selectedCar.Citum.push(@newCita)
+          CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
           render plain: "Cita creada exitosamente con el id " + @newCita.id
         else
           render plain: "false"
@@ -92,6 +93,7 @@ class WelcomeController < ApplicationController
         @newCita = Citum.new(Placa: @newAuto.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
         if @newCita.save
           @newAuto.Citum.push(@newCita)
+          CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
           render plain: "Cita creada exitosamente con el id " + @newCita.id
         else
           render plain: "false"
@@ -101,7 +103,7 @@ class WelcomeController < ApplicationController
   end
 
  def nuevaCitaCliente
-    @newCliente = Cliente.new(NombreCliente: params[:nombreCliente],ApellidoCliente: params[:apellidoCliente],Email: params[:emailCliente],Direccion: params[:dirCliente])
+    @newCliente = Cliente.new(NombreCliente: params[:nombreCliente],ApellidoCliente: params[:apellidoCliente],Email: params[:emailCliente],Direccion: params[:dirCliente], Password: params[:passwordCliente])
     if @newCliente.save
       @newAuto = Auto.new(Placa: params[:placaAuto],Modelo: params[:modeloAuto],NumeroMotor: params[:numeroAuto])
       if @newAuto.save
@@ -156,7 +158,7 @@ class WelcomeController < ApplicationController
   end
 
   def checkCliente
-  	if Cliente.where(Email: params[:emailCliente]).blank?
+  	if Cliente.where(Email: params[:emailCliente]).and(Password: params[:passwordCliente]).blank?
 		 render plain: "false"		 
 	else
 		 render plain: "true"
@@ -164,7 +166,7 @@ class WelcomeController < ApplicationController
   end
 
   def checkAuto
-  if Cliente.where(Email: params[:emailCliente]).blank?
+  if Cliente.where(Email: params[:emailCliente]).and(Password: params[:passwordCliente]).blank?
      render plain: "false"     
   else
      if Cliente.where(Email: params[:emailCliente]).first.Auto.where(Placa: params[:placaVeh]).blank?
