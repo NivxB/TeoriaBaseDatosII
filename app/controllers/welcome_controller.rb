@@ -8,17 +8,18 @@ class WelcomeController < ApplicationController
   end
   
   def modificarMecanico
-    @allAsesores = Asesor.all
     @selectMeca = Mecanico.find_by(:id=>params[:idMeca]) 
   end
 
   def actuaMecanico
     @selectMeca= Mecanico.find_by(:id=>params[:idMeca])
+    @selectMeca.update(NombreMecanico: params[:nameMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
     render plain: "Bien"
   end
 
   def actuaAsesor
     @selectAsesor = Asesor.find(params[:idAse])
+    @selectAsesor.update(NombreAsesor: params[:nombreAse],ApellidoAsesor: params[:apellidoAse], NumeroTelefono: params[:telefonoAse])
     render plain: "Bien"
   end
 
@@ -65,11 +66,38 @@ class WelcomeController < ApplicationController
   end
 
   def newCitaRegis
-  	
+  	@selectedCliente = Cliente.find_by(Email: params[:emailCliente])
+    @autosCliente= @selectedCliente.Auto.all
   end
 
   def newCitaCliente
 
+  end
+
+  def nuevaCitaRegis
+    @selectedCliente = Cliente.find(params[:idCliente])
+    if params[:placaAuto] == "nil"
+      @selectedCar = Auto.find(params[:idAuto])
+      @newCita = Citum.new(Placa: @selectedCar.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+      if @newCita.save
+          @selectedCar.Citum.push(@newCita)
+          render plain: "Cita creada exitosamente con el id " + @newCita.id
+        else
+          render plain: "false"
+        end
+    else
+      @newAuto = Auto.new(Placa: params[:placaAuto],Modelo: params[:modeloAuto],NumeroMotor: params[:numeroAuto])
+      if @newAuto.save
+        @newCliente.Auto.push(@newAuto)
+        @newCita = Citum.new(Placa: @newAuto.Placa, NombreCliente: @selectedCliente.NombreCliente, Estado: "NO_INGRESADO", TelefonoContacto: params[:telefonoContacto], FechaHoraEntrada: params[:fechaCita] + " " + params[:horaCita])
+        if @newCita.save
+          @newAuto.Citum.push(@newCita)
+          render plain: "Cita creada exitosamente con el id " + @newCita.id
+        else
+          render plain: "false"
+        end
+      end
+    end
   end
 
  def nuevaCitaCliente
@@ -109,11 +137,13 @@ class WelcomeController < ApplicationController
  end
 
  def modAuto
+  @selectedCliente = Cliente.find_by(Email: params[:emailCliente])
   @selectedAuto = Auto.find_by(:Placa => params[:placaVeh])
  end
 
  def modificarVehiculo
     @nuevoCarro = Auto.find_by(:Placa => params[:placaAuto])
+    @nuevoCarro.update(Modelo: params[:modeloAuto] , NumeroMotor: params[:numeroAuto])
     render plain: "Vehiculo modificado exitosamente con el Id de Vehiculo :  #{@nuevoCarro.id} "
  end
 
@@ -160,7 +190,13 @@ class WelcomeController < ApplicationController
 
   def cambiarEstado
     @selectedAsesor = Asesor.find(params[:asesorId])
-    @selectedCita = @selectedAsesor.Citum.where(:Placa => params[:placaVeh]).first
+    @Citas = @selectedAsesor.Citum.all
+    @ListaEstados = Array.new(@Citas.count)
+
+    for  i in 0..(@Citas.count - 1)
+      @ListaEstados[i] = @Citas[i].Estado
+    end
+
   end
 
   def updateEstado
@@ -168,4 +204,30 @@ class WelcomeController < ApplicationController
     @selectedCita.update(:Estado => params[:Estado] , :FechaEstimadaEntrega => params[:PosibleDate])
     render plain: "Estado actualizado"
   end
+
+
+def asigAsesor
+  @Asesor = Asesor.find(params[:idAsesor])
+  @Citas = Citum.where(Asesor_id: nil).all
+  @Mecanicos = @Asesor.Mecanico.all
+end
+
+def setCita
+  @Asesor = Asesor.find(params[:idAsesor])
+  @Mecan = params[:idMecanicos]
+  @Mecan = @Mecan.split("|")
+  @Citas = params[:idCitas]
+  @Citas = @Citas.split("|")
+
+  for i in 0..(@Citas.count - 1)
+    @currentCita = Citum.find(@Citas[i])
+    @currentCita.update(Estado: "INGRESADO")
+    @Asesor.Citum.push(@currentCita)
+    for i in 0..(@Mecan.count - 1)
+      @currentMeca = Mecanico.find(@Mecan[i])
+      @currentCita.Mecanico.push(@currentMeca)
+    end
+  end
+  render plain: "Cita asignada exitosamente"
+end
 end

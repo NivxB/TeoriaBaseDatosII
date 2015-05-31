@@ -25,9 +25,6 @@
 		</br>
 			Placa del Auto: <input id= "placaAuto" type="text" value="<%= @selectedAuto.Placa %>" readonly></input>
 		</br>
-			Propietario: <%= select("cliente", "auto", @allClientes.collect {|p| [ p.NombreCliente,p.id ]})%>
-
-		</br>
 			Modelo del Auto: <input id= "modeloAuto" type= "text" value="<%= @selectedAuto.Modelo%>"></input>
 		</br>
 			Numero del Motor:	<input id= "numeroAuto" type= "text" value="<%= @selectedAuto.NumeroMotor%>"></input>
@@ -49,7 +46,6 @@
 	as needed -->
 	<script src="assets/javascripts/bootstrap.min.js"></script>
 	<script>
-	$("cliente_auto").val(<%= @selectedAuto.cliente_id %>)
 
 	$("#AsesorIngresando").show();
 	$("#ContPrin").hide();
@@ -66,7 +62,7 @@
   		$.ajax({
 	     		url: "/modificarVehiculo",
 	      		type: "POST",
-	      		data: {cliente_id: $("#cliente_auto").val(), placaAuto: $("#placaAuto").val(), modeloAuto: $("#modeloAuto").val(), numeroAuto: $("#numeroAuto").val()},
+	      		data: {idCliente: "<%= @selectedCliente.id %>", placaAuto: $("#placaAuto").val(), modeloAuto: $("#modeloAuto").val(), numeroAuto: $("#numeroAuto").val()},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);

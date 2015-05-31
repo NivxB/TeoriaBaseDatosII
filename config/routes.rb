@@ -19,7 +19,8 @@ Rails.application.routes.draw do
    get '/agregarMecanico' => 'welcome#agregarMecanico'
    get '/Seguimiento' => 'welcome#seguimiento'
    get '/homepage'=>'welcome#homepage'
-   
+   get '/asigAsesor' => 'welcome#asigAsesor'
+
    get '/newVehiculo' => 'welcome#newVehiculo'
    get '/agregarAsesor' => 'welcome#agregarAsesor'
    get '/modAuto' => 'welcome#modAuto'
@@ -34,12 +35,14 @@ Rails.application.routes.draw do
 
    
    post '/nuevaCitaCliente' => 'welcome#nuevaCitaCliente'
+   post '/nuevaCitaRegis' => 'welcome#nuevaCitaRegis'
   
    post '/nuevoCliente' => 'welcome#nuevoCliente'
    post '/nuevoMecanico' =>'welcome#nuevoMecanico'
    post '/nuevoAsesor' => 'welcome#nuevoAsesor'
    post '/nuevoVehiculo' => 'welcome#nuevoVehiculo'
    post '/updateEstado' => 'welcome#updateEstado'
+   post '/setCita' => 'welcome#setCita'
 
    post '/modificarVehiculo' => 'welcome#modificarVehiculo'
    get '/modificarAsesor' => 'welcome#modificarAsesor'

@@ -22,24 +22,15 @@
 		</nav>
 	
 	<div id="homePrin">
-		<h1 align="Center" >Nueva cita</h1>
+		<h1 align="Center" >Cambiar Estado</h1>
 		<h2 align="Center" >
 		<p align="center">
-		Nombre Cliente: <input id= "nameCliente" type="text" value="<%= @selectedCita.NombreCliente %> " readonly></input>
-		<br>
-		Telefono Contacto: <input id= "telefonoContacto" type="text" value="<%= @selectedCita.TelefonoContacto %> " readonly></input>
-		<br>
-		Placa de sus Autos: <input id= "placaAuto" type="text" value="<%= @selectedCita.Placa %> " readonly></input>
-		<br>
-		Asesor: <input id= "asesorId" type="text" value="<%= @selectedAsesor.NombreAsesor + "  " + @selectedAsesor.ApellidoAsesor %> " readonly></input>
-		<br>
-		Mecanicos: <%= select("mecanico", "all", @selectedCita.Mecanico.collect {|p| [ p.NombreMecanico,p.id ]},{},{"multiple" => true})%>
-		<br>
-		Servicios: <%= select("servicio", "all", @selectedCita.Servicio.collect {|p| [ p.Descripcion,p.id ]},{},{"multiple" => true})%>
+		
+		Citas asignadas: <%= select("citas", "all", @Citas.collect {|p| [ p.Placa,p.id ]})%>
+	
 
 		<br>
-		<br>
-
+		Estado Actual: <input id="EstadoActual" readonly></input>
 		Estado: 
 		<select id="ESTADO">
   			<option value="NO_INGRESADO">No ingresado</option>
@@ -52,10 +43,18 @@
 		</select> 
 
 		<br>
-		Fecha de entrada: <input id="estimadaFecha" type="date" value="<%= @selectedCita.FechaHoraEntrada %>" readonly>
+		Fecha estimada entrega: <input id="estimadaFecha" type="date">
 		<br>
-		Fecha estimada entrega: <input id="estimadaFecha" type="date" value="<%= @selectedCita.FechaEstimadaEntrega %>">
-		<br>
+
+		<script type="text/javascript">
+			var Estado = <%= raw @ListaEstados.to_json %>
+
+
+			$( "#citas_all" )
+				.change(function () {
+					$("#EstadoActual").val(Estado[$("#citas_all option:selected").index()])
+			});
+		</script>
 
 		<button align="center" id="createCita" type="button" class="btn btn-lg btn"  >
 					<span>Actualizar Estado</span>
@@ -77,7 +76,7 @@
 	<script src="assets/javascripts/bootstrap.min.js"></script>
 	<script>
 
-	$("#ESTADO").val("<%= @selectedCita.Estado %>")
+
 
 	$("#ContPrin").hide();
 	$("#homePrin").show();
@@ -95,7 +94,7 @@
   		$.ajax({
 	     		url: "/updateEstado",
 	      		type: "POST",
-	      		data: {Estado: $('#ESTADO').find(":selected").val() ,idCita: <%= @selectedCita.id %> ,PosibleDate: $("#estimadaFecha").val() },
+	      		data: {Estado: $('#ESTADO').find(":selected").val() ,idCita: $('#citas_all').find(":selected").val()  ,PosibleDate: $("#estimadaFecha").val() },
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);

@@ -25,16 +25,25 @@
 		<h1 align="Center" >Nueva cita</h1>
 		<h2 align="Center" >
 		<p align="center">
-		Nombre Cliente: <input id= "nameCliente" type="text" value="<%= (@selectedCliente.NombreCliente + " " + @selectedCliente.ApellidoCliente) %> " readonly></input>
-		<br>
+		
 		Telefono Contacto: <input id= "telefonoContacto" type="text"></input>
 		<br>
-		Placa de sus Autos: <%= select("autos", "placas", @autosCliente.collect {|p| [ p.Placa,p.id ]})%>
+		<input type="radio" name="auto" value="0" onclick="selectedAuto()" checked="checked">Auto registrado  <input type="radio" name="auto" value="1" onclick="selectedAuto()">Nuevo Auto
 		<br>
-		Asesor: <%= select("asesor", "all", @allAsesores.collect {|p| [ p.NombreAsesor,p.id ]})%>
+		Autos: <%= select("autos", "placas", @autosCliente.collect {|p| [ p.Placa,p.id ]})%>
 		<br>
-		Mecanicos: <%= select("mecanico", "all", @allMecanicos.collect {|p| [ p.NombreMecanico,p.id ]},{},{"multiple" => true})%>
+		<div id="newAu">
+			Placa del Auto: <input id= "placaAuto" type="text"></input>
+		</br>
+			Modelo del Auto: <input id= "modeloAuto" type= "text"></input>
+		</br>
+			Numero del Motor:	<input id= "numeroAuto" type= "text"></input>
+		</div>
 		<br>
+			Dia de la cita: <input id= "fechaCita" type= "date"></input>
+		</br>	
+			Hora: <input id= "horaCita" type= "time" min="07:00:00" max="15:00:00"></input>
+		</br>
 		<input type="radio" name="tipo" value="0" onclick="selected()" checked="checked">Mantenimiento  <input type="radio" name="tipo" value="1" onclick="selected()">Reparacion
 
 		<br>
@@ -51,10 +60,12 @@
   		</select>
 
 		<script>
-			var Mec = "";
 			var Desc = "";
 			$('#ReparacionSelect').hide();
 			$('#MantoSelect').show();
+								$('#newAu').hide();
+					$('#autos_placas').show();
+					$("#placaAuto").val("nil") 
 			function selected(){
 				if ($('input[name=tipo]:checked').val() == "0"){
 					$('#ReparacionSelect').hide();
@@ -63,6 +74,17 @@
 				}else{
 					$('#MantoSelect').hide();
 					$('#ReparacionSelect').show();
+					
+				}
+			}
+			function selectedAuto(){
+				if ($('input[name=auto]:checked').val() == "0"){
+					$('#newAu').hide();
+					$('#autos_placas').show();
+					$("#placaAuto").val("nil") 
+				}else{
+					$('#newAu').show();
+					$('#autos_placas').hide();
 					
 				}
 			}
@@ -78,14 +100,6 @@
 					Desc = "";
 				$( "#MantoSelect option:selected" ).each(function() {
 					Desc += $( this ).text() + " ";
-				});
-			});
-
-			$( "#mecanico_all" )
-				.change(function () {
-					Mec = "";
-				$( "#mecanico_all option:selected" ).each(function() {
-					Mec += $( this ).val() + "|";
 				});
 			});
 		</script>
@@ -126,9 +140,9 @@
 		});
 	$("#createCita").click(function(){
   		$.ajax({
-	     		url: "/nuevaCita",
+	     		url: "/nuevaCitaRegis",
 	      		type: "POST",
-	      		data: {nombreCliente: $("#nameCliente").val(), telefonoContacto: $("#telefonoContacto").val() , Mecan: Mec, Tipo: $('input[name=tipo]:checked').val(), Desc: Desc,asesorid: $("#asesor_all").val(),autoid: $("#autos_placas").val()},
+	      		data: {telefonoContacto: $("#telefonoContacto").val(),placaAuto: $("#placaAuto").val(),modeloAuto: $("#modeloAuto").val(),numeroAuto: $("#numeroAuto").val(),fechaCita: $("#fechaCita").val(),horaCita: $("#horaCita").val() , Tipo: $('input[name=tipo]:checked').val(), Desc: Desc,idAuto: $("#autos_placas").val(),idCliente: "<%= @selectedCliente.id  %>"},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);

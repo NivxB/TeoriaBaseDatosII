@@ -2,6 +2,7 @@
 <html>
 <title>Home</title>
 <head>
+		
 		<meta charset="utf-8" />
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,7 +13,7 @@
 	<body data-spy="scroll" data-target=".navbar-collapse">
 		<nav id = "nav" class="navbar navbar-default">
 			<div id="logo">
-              <img src="assets/images/ams.png" HEIGHT="100" WIDTH="100"  alt="" />
+				<%= image_tag("ams.png", size: "100x100", alt: "") %>
 			</div>
 			<ul class="nav nav-tabs" id="Menu">
 				
@@ -20,19 +21,38 @@
 	  			<li id ="ContactBut" role="presentation" class="right-button" type="Button">Contacts</li>
 			</ul>
 		</nav>
-		<div id="AsesorIngresando">
-		<h2 align="center">Agregando Asesor</h2>
-			Nombre del Mecanico: <input id= "nameMeca" type="text" value="<%= (@selectMeca.NombreMecanico)%> "></input>
+		<div id="AsignarAse">
+		<h2 align="center">Citas Disponibles</h2>
+			Placa del Auto: <%= select("citas", "disp", @Citas.collect {|p| [ p.Placa,p.id ]},{},{"multiple" => true})%>
 		</br>
-			Apellido del Mecanico: <input id= "apeMeca" type= "text" value="<%= (@selectMeca.ApellidoMecanico)%> "></input>
+			Mecanicos: <%= select("mecanico", "all", @Mecanicos.collect {|p| [ p.NombreMecanico,p.id ]},{},{"multiple" => true})%>
+		
+			<script type="text/javascript">
+				var Cita = ""
+				var Mecan = ""
+				$( "#citas_disp" )
+					.change(function () {
+						Cita = "";
+					$( "#citas_disp option:selected" ).each(function() {
+						Cita += $( this ).val() + "|";
+					});
+				});
+
+					$( "#mecanico_all" )
+					.change(function () {
+						Mecan = "";
+					$( "#mecanico_all option:selected" ).each(function() {
+						Mecan += $( this ).val() + "|";
+					});
+				});
+			</script>
 		</br>
-			Numero de Mecanico:	<input id= "telMeca" type= "text" value="<%= (@selectMeca.NumeroTelefono)%> "></input>
-		</br>
-			<button align="center" id="actualizarMecanico" type="button" class="btn btn-lg btn"  >
-					<span>Actualizar Mecanico</span>
+			<button align="center" id="Asignar" type="button" class="btn btn-lg btn"  >
+					<span>Tomar Cita</span>
 			</button>
 		</div>
 	</div>
+
 	<div id="ContPrin">
 		<h1 align="Center" style="color: #fff;">Contact</h1>
 		<p align="Center" style="color: #fff;">Hola aqui Se pondra nuestros Numeros Para todas las chicas guapas y sexis que nos quierean para haci poder tener mil novias</p>
@@ -43,9 +63,11 @@
 	jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files
 	as needed -->
-	<script src="assets/javascripts/bootstrap.min.js"></script>
+	<script src="assets/javascripts/bootstrap.min.js">
+	
+	</script>
 	<script>
-	$("#AsesorIngresando").show();
+	$("#AsignarAse").show();
 	$("#ContPrin").hide();
 	$("#homebut").click(function(){
 			var url = "/homepage"
@@ -56,11 +78,11 @@
 			$("#homePrin").hide();
 			$("#ContPrin").show();
 		});
-	$("#actualizarMecanico").click(function(){
+	$("#Asignar").click(function(){
   		$.ajax({
-	     		url: "/actuaMecanico",
+	     		url: "/setCita",
 	      		type: "POST",
-	      		data: {nameMeca: $("#nameMeca").val(), telefonoMeca: $("#telMeca").val(), apellidoMeca: $("#apeMeca").val(), idMeca: $("#idMeca").val()},
+	      		data: {idAsesor: "<%= @Asesor.id %>", idCitas: Cita, idMecanicos: Mecan},
 	      		success: function(data){                
   				if (data != "Error"){
   					alert(data);
@@ -72,7 +94,6 @@
 				}
 			}
   		});
-
 	});</script>
 
 
