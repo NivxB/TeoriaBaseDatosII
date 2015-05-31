@@ -264,3 +264,20 @@ table.imagetable td {
 	border-style: solid;
 	border-color: #999999;
 }
+
+.imagenMecanico{
+  width:100%;
+  height:100%;
+}
+
+.botonesInicio{
+  background-color: red;
+}
+
+.buttonFontColor{
+  color:white;
+}
+
+.panelesFont{
+  color:white;
+}
