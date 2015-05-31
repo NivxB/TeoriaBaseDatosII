@@ -19,24 +19,31 @@ Rails.application.routes.draw do
    get '/agregarMecanico' => 'welcome#agregarMecanico'
    get '/Seguimiento' => 'welcome#seguimiento'
    get '/homepage'=>'welcome#homepage'
-   get '/newCita' => 'welcome#newCita'
+   get '/asigAsesor' => 'welcome#asigAsesor'
+
    get '/newVehiculo' => 'welcome#newVehiculo'
    get '/agregarAsesor' => 'welcome#agregarAsesor'
    get '/modAuto' => 'welcome#modAuto'
    get '/cambiarEstado' => 'welcome#cambiarEstado'
+   get '/newCitaRegis' => 'welcome#newCitaRegis'
+   get '/newCitaCliente' => 'welcome#newCitaCliente'
 
    post '/checkCita' => 'welcome#checkCita'
    post '/checkCliente' => 'welcome#checkCliente'
+      post '/checkAsesor' => 'welcome#checkAsesor'
    post '/checkAuto' => 'welcome#checkAuto'
    post '/checkAsesorAuto' => 'welcome#checkAsesorAuto'
 
+   
    post '/nuevaCitaCliente' => 'welcome#nuevaCitaCliente'
    post '/nuevaCitaRegis' => 'welcome#nuevaCitaRegis'
+  
    post '/nuevoCliente' => 'welcome#nuevoCliente'
    post '/nuevoMecanico' =>'welcome#nuevoMecanico'
    post '/nuevoAsesor' => 'welcome#nuevoAsesor'
    post '/nuevoVehiculo' => 'welcome#nuevoVehiculo'
    post '/updateEstado' => 'welcome#updateEstado'
+   post '/setCita' => 'welcome#setCita'
 
    post '/modificarVehiculo' => 'welcome#modificarVehiculo'
    get '/modificarAsesor' => 'welcome#modificarAsesor'

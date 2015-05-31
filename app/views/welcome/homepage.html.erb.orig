@@ -10,84 +10,119 @@
 		<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet">
 		<link href="assets/stylesheets/AutoHome.css" rel="stylesheet" type="text/css"/>
 		
+<<<<<<< HEAD
+	<body >
+		<nav>
+			<ul>
+				<li><a href="#" id="homebut">Home</a></li>
+				<li><a href="#">Programar Cita</a>
+					<div>
+						<ul>
+							<li class="titulo"><a href="">Cliente Registrado</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo azul"><a href="/newCitaCliente">Nuevo Cliente</a></li>
+						</ul>
+					</div>
+=======
 	<body data-spy="scroll" data-target=".navbar-collapse">
 		<nav id = "nav" class="navbar navbar-default">
 			<div id="logo">
 				<%= image_tag("ams.png", size: "100x100", alt: "") %>
 			</div>
-			<ul class="nav nav-tabs" id="Menu">
+			<ul class="nav nav-pills" id="Menu">
 				<li id ="homebut" role="presentation" class="right-button" type="Button">Home</li>
 				<li id ="CrearCli" role="presentation" class="right-button" type="Button">Crear Cliente
+>>>>>>> 524874878188cba21be7e6d008db40e008e1855e
 				</li>
-
-				<li id ="hi" role="presentation" class="right-button" type="Button">Administración Empleado
-				<ul id="menucombo">
-	  					<li id="AAcesor" type="Button">Administrar Asesor</li>
-	  					<li id="AMecanico" type="Button">Administrar Mecánico</li>
-	  					<li id="AVehi" type="Button">Administrar Vehículo</li>
-	  				</ul>
-	  			</li>
-	  			<li id ="hi" role="presentation" class="right-button" type="Button">Registro
-	  				<ul id="menucombo">
-	  					<li id="RCitas" type="Button">Registro Citas</li>
-	  					<li id="RVeh" type="Button">Registro Vehículo</li>
-	  				</ul>
-	  			</li>
-	  			<li id ="SeguimientoVehi" role="presentation" class="right-button" type="Button">Seguimiento</li>
-	  			<li id ="ContactBut" role="presentation" class="right-button" type="Button">Contacto</li>
+				<li><a href="#">Administrar</a>
+				<div>
+ 
+						<ul>
+							<li class="titulo"><a href="">Cliente</a></li>
+							<li><a href="">Crear</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo azul"><a href="">Vehiculo</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo verde"><a href="">Asesor</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+							<li><a href="">Asignar Cita</a></li>
+						</ul>
+	 
+						<ul>
+							<li class="titulo rojo"><a href="">Mecanico</a></li>
+							<li><a href="">Crear</a></li>
+							<li><a href="">Modificar</a></li>
+						</ul>
+					</li>
+				</div>
+				<li><a href="#">Acerca de</a></li>
 			</ul>
+<<<<<<< HEAD
+			<div id="homePrin">
+		<h1 align="Center" style="color: #000000">Home</h1>
+		<p align="Center" style="color: #000000">Proyecto de Teoría de Base de Datos I</p>
+=======
 		</nav>
 	<div id="RegistrarCita" style="width:800px; margin:0 auto;">
-		<h1>Registrar Cita</h1>
+		<h1 class="panelesFont">Registrar Cita</h1>
 			
-		<form>
+		<form>	
+			</br>
+
 			<div class="input-group">
-				<input id="RCT1"type="text" class="form-control" name="nombreUsuario" placeholder="Clave Usuario" ></input>
+				<input id="RCT1" type="text" class="form-control" name="nombreUsuario" placeholder="Clave Usuario" aria-describedby="basic-addon1">
 			</div>
 			
 			</br>
 			
-			
-			<button id="BuscarCli" type = "button" class="btn btn-lg btn" >
+			<button id="BuscarCli" type = "button" class="btn btn-lg btn btn-success" >
 					<span>Buscar</span>
 			</button>
 		
 		</form>
 	</div>
 	<div id="RegistrarVehi" style="width:800px; margin:0 auto;">
-		<h1>Registrar Vehículo</h1>
+		<h1 class="panelesFont">Registrar Vehículo</h1>
 			
 		<form>
 			<div class="input-group">
-<<<<<<< HEAD
-				<input id="RCTP"type="text" class="form-control" name="claveAsesor" placeholder="Id de Asesor" ></input>
-				<input id="RCT2"type="text" class="form-control" name="ClaveVehiREG" placeholder="Placa de Auto" ></input>
-=======
-				<input id="RCT2"type="text" class="form-control" name="ClaveVehiREG" placeholder="Clave Vehículo" ></input>
->>>>>>> 9d3da077839d65857374208a05f0ca6c2027f549
+				<input id="RCTP" type="text" class="form-control" name="claveAsesor" placeholder="Id de Asesor" aria-describedby="basic-addon1">
+			</div>
+				</br>
+			<div class="input-group">
+				<input id="RCT2" type="text" class="form-control" name="ClaveVehiREG" placeholder="Placa de Auto" aria-describedby="basic-addon1">
 			</div>
 			
 			</br>
 			
 			
-			<button id="BuscarVeh" type="button" class="btn btn-lg btn" >
+			<button id="BuscarVeh" type="button" class="btn btn-lg btn btn-success" >
 					<span>Buscar</span>
 			</button>
 		
 		</form>
 	</div>
 	<div id="Seguimiento" style="width:800px; margin:0 auto;">
-		<h1>Seguimiento</h1>
+		<h1 class="panelesFont">Seguimiento</h1>
 			
 		<form>
 			<div class="input-group">
-				<input id="RCT"type="text" class="form-control" name="ClaveCita" placeholder="Código de la Cita" ></input>
+				<input id="RCT" type="text" class="form-control" name="ClaveCita" placeholder="Código de la Cita" aria-describedby="basic-addon1">
 			</div>
-			
+
 			</br>
 			
 			
-			<button id="BuscarVehSeguimiento" type="button" class="btn btn-lg btn" >
+			<button id="BuscarVehSeguimiento" type="button" class="btn btn-lg btn btn-success" >
 					<span>Buscar</span>
 			</button>
 			
@@ -95,7 +130,7 @@
 		</form>
 	</div>
 	<div id="adminmecanico" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Mecánicos</h1>
+		<h1 align="center" class="panelesFont">Administración de Mecánicos</h1>
 		</br>	
 		<form>
 			<div align="center"class="input-group">
@@ -105,72 +140,123 @@
 			</br>
 			</br>
 			
-			<button align="center" id="ModificarMecaButton" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
 
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarMecaButton" type="button" class="btn btn-lg btn"  >
+			<div class="btn-group" role="group">
+				<button type="button" id="ModificarMecaButton" type="button" class="btn btn-lg btn btn-warning"  >
+					<span>Modificar</span>
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button align="center" id="AgregarMecaButton" type="button" class="btn btn-lg btn btn-primary"  >
 					<span>Agregar</span>
-			</button>
+				</button>
+			</div>
+
 		</form>
 	</div>
 	<div id="adminAcesor" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Asesores</h1>
+		<h1 class="panelesFont">Administración de Asesores</h1>
 		</br>	
 		<form>
-			<div align="center"class="input-group">
-				<input align="center"  id="AdminAcesoText"type="text" class="form-control" name="nombreVEH" placeholder="Clave Asesor" ></input>
+
+			<div class="input-group">
+				<input id="AAT" type="text" class="form-control" name="nombreVEH" placeholder="Clave Asesor" aria-describedby="basic-addon1">
 			</div>
 			
 			</br>
 			</br>
-			
-			<button align="center" id="MAB" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
 
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarAcesorButton" type="button" class="btn btn-lg btn"  >
+
+			<div class="btn-group" role="group">
+				<button type="button" id="MAB" type="button" class="btn btn-lg btn btn-warning"  >
+					<span>Modificar</span>
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button align="center" id="AgregarAcesorButton" type="button" class="btn btn-lg btn btn-primary"  >
 					<span>Agregar</span>
-			</button>
+				</button>
+			</div>
+
+			
 		</form>
 	</div>
 	<div id="adminVehi" style="width:800px; margin:0 auto;">
-		<h1 align="center">Administración de Vehículos</h1>
+		<h1 align="center" class="panelesFont">Administración de Vehículos</h1>
 		</br>	
 		<form>
 			<div align="center"class="input-group">
+				<input align="center"  id="AdminVehiCliente"type="text" class="form-control" name="VehCliente" placeholder="Email Cliente" ></input>
+			</br>
 				<input align="center"  id="AdminVehiText"type="text" class="form-control" name="nombreVeh" placeholder="Placa del Vehículo" ></input>
 			</div>
 			
 			</br>
 			</br>
-			
-			<button align="center" id="ModificarVehiButton" type="button" class="btn btn-lg btn"  >
-					<span>Modificar</span>
-			</button>
-		</br>
 
-		<h4 align="center">------OR------</h4>
-		
-			<button align="center" id="AgregarVehiButton" type="button" class="btn btn-lg btn"  >
+			<div class="btn-group" role="group">
+				<button type="button" id="ModificarVehiButton" type="button" class="btn btn-lg btn btn-warning"  >
+					<span>Modificar</span>
+				</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button align="center" id="AgregarVehiButton" type="button" class="btn btn-lg btn btn-primary"  >
 					<span>Agregar</span>
-			</button>
+				</button>
+			</div>
+
 		</form>
 	</div>
 	<div id="homePrin">
-		<h1 align="Center" style="color: #fff;">Home</h1>
-		<p align="Center" style="color: #fff;">Proyecto de Teoría de Base de Datos I</p>
-	</div>
+		<h1 align="Center" style="color: #fff;">Bienvenido</h1>
+		<p align="Center" style="color: #fff;">Proyecto de Teoría de Base de Datos II</p>
+		
+		<div class="row">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<%= image_tag("paginaPrincipalMecanico.jpg", :alt => "rss feed") %>
+					<div class="caption">
+						<h3>Empleados</h3>
+						<p>Agregue, Modifique, o elimine los empleados.</p>
+						<p class="buttonFontColor"><a id="buttonGestionarMecanicos" class="btn btn-primary" role="button">Mecánicos</a><a id="buttonGestionarAsesores" class="btn btn-success" role="button">Asesores</a><a id="buttonGestionarVehiculos" class="btn btn-warning" role="button">Vehículos</a></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<%= image_tag("registroVehiculoImagen.jpg", :alt => "rss feed") %>
+					<div class="caption">
+						<h3>Registro</h3>
+						<p>¡Registre su automóvil o haga su propia cita ya!</p>
+						<p class="buttonFontColor"><a id="buttonRegistrarCarro" class="btn btn-primary btn-lg" role="button">Vehículos</a> <a id="buttonRegistrarCita" class="btn btn-success btn-lg" role="button">Citas</a></p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<%= image_tag("seguimientoImagen.jpg", :alt => "rss feed") %>
+					<div class="caption">
+						<h3>Seguimiento</h3>
+						<p>¡Proporcione seguimiento a su carro!</p>
+						<p class="buttonFontColor"><a id="buttonSeguimientoCarro" class="btn btn-primary btn-lg" role="button">¡Dar Seguimiento!</a></p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	
+	 </div>
+
 	<div id="ContPrin">
 		<h1 align="Center" style="color: #fff;">Contacto</h1>
 		<p align="Center" style="color: #fff;">Email: kevin_bara@unitec.edu</p>
+		<p align="Center" style="color: #fff;">Email: horacio.galdamez@unitec.edu</p>
+		<p align="Center" style="color: #fff;">Email: emerson007@unitec.edu</p>
+>>>>>>> 524874878188cba21be7e6d008db40e008e1855e
 	</div>
+		</nav>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/
 	jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files
@@ -185,6 +271,18 @@
 	$("#adminAcesor").hide();
 	$("#ContPrin").hide();
 	$("#homePrin").show();
+
+		$("#buttonRegistrarCita").click(function(){
+			$("#RegistrarCita").show();
+			$("#RegistrarVehi").hide();
+			$("#Seguimiento").hide();
+			$("#adminmecanico").hide();
+			$("#homePrin").hide();
+			$("#adminVehi").hide();
+			$("#adminAcesor").hide();
+			$("#ContPrin").hide();			
+		});
+
 		$("#RCitas").click(function(){
 			$("#RegistrarCita").show();
 			$("#RegistrarVehi").hide();
@@ -195,6 +293,18 @@
 			$("#adminAcesor").hide();
 			$("#ContPrin").hide();			
 		});
+
+		$("#buttonRegistrarCarro").click(function(){
+			$("#RegistrarVehi").show();
+			$("#RegistrarCita").hide();
+			$("#Seguimiento").hide();
+			$("#adminmecanico").hide();
+			$("#homePrin").hide();
+			$("#adminVehi").hide();
+			$("#adminAcesor").hide();
+			$("#ContPrin").hide();
+		});
+
 		$("#RVeh").click(function(){
 			$("#RegistrarVehi").show();
 			$("#RegistrarCita").hide();
@@ -205,6 +315,18 @@
 			$("#adminAcesor").hide();
 			$("#ContPrin").hide();
 		});
+
+		$("#buttonSeguimientoCarro").click(function(){
+			$("#Seguimiento").show();
+			$("#RegistrarVehi").hide();
+			$("#RegistrarCita").hide();
+			$("#adminmecanico").hide();
+			$("#homePrin").hide();
+			$("#adminVehi").hide();
+			$("#adminAcesor").hide();
+			$("#ContPrin").hide();
+		});
+
 		$("#SeguimientoVehi").click(function(){
 			$("#Seguimiento").show();
 			$("#RegistrarVehi").hide();
@@ -255,6 +377,29 @@
 			$("#adminAcesor").hide();
 			$("#ContPrin").hide();
 		});
+
+		$("#buttonGestionarMecanicos").click(function(){
+			$("#Seguimiento").hide();
+			$("#RegistrarVehi").hide();
+			$("#RegistrarCita").hide();
+			$("#homePrin").hide();
+			$("#adminmecanico").show();
+			$("#adminVehi").hide();
+			$("#adminAcesor").hide();
+			$("#ContPrin").hide();
+		});
+
+		$("#buttonGestionarAsesores").click(function(){
+			$("#Seguimiento").hide();
+			$("#RegistrarVehi").hide();
+			$("#RegistrarCita").hide();
+			$("#homePrin").hide();
+			$("#adminmecanico").hide();
+			$("#adminVehi").hide();
+			$("#adminAcesor").show();
+			$("#ContPrin").hide();
+		});
+
 	$("#AAcesor").click(function(){
 			$("#Seguimiento").hide();
 			$("#RegistrarVehi").hide();
@@ -265,6 +410,18 @@
 			$("#adminAcesor").show();
 			$("#ContPrin").hide();
 		});
+
+	$("#buttonGestionarVehiculos").click(function(){
+			$("#Seguimiento").hide();
+			$("#RegistrarVehi").hide();
+			$("#RegistrarCita").hide();
+			$("#homePrin").hide();
+			$("#adminmecanico").hide();
+			$("#adminVehi").show();
+			$("#adminAcesor").hide();
+			$("#ContPrin").hide();
+		});
+
 	$("#AVehi").click(function(){
 			$("#Seguimiento").hide();
 			$("#RegistrarVehi").hide();
@@ -330,14 +487,14 @@
 			
 	     		url: "/checkAuto",
 	      		type: "POST",
-	      		data: {placaVeh: $("#AdminVehiText").val()},
+	      		data: {placaVeh: $("#AdminVehiText").val(),emailCliente: $("#AdminVehiCliente").val()},
 	      		success: function(data){                
   				if (data == "true"){
-  					var url = "/modAuto?placaVeh=" + $("#AdminVehiText").val()
+  					var url = "/modAuto?placaVeh=" + $("#AdminVehiText").val()+"&emailCliente="+ $("#AdminVehiCliente").val()
   					window.location.href=url
 				}
 				else{
-					alert("Ese automovil no ha sido ingresado")				
+					alert("Ese automovil no ha sido ingresado o no esta registrado a su cuenta")				
 				}
 			}
   		});
@@ -364,14 +521,27 @@
 	});
 
     $("#CrearCli").click(function() {
-		var url = "/clientes/new"
+		var url = "/agregarCliente"
 		window.location.href=url
 
 	});
 
     $("#AgregarVehiButton").click(function(){
-    	var url = "/newVehiculo"
-    	window.location.href=url
+  		$.ajax({
+			
+	     		url: "/checkCliente",
+	      		type: "POST",
+	      		data: {emailCliente: $("#AdminVehiCliente").val()},
+	      		success: function(data){                
+  				if (data == "true"){
+  					var url = "/newVehiculo?emailCliente=" + $("#AdminVehiCliente").val()
+  					window.location.href=url
+				}
+				else{
+					alert("No se encuentra registrado")				
+				}
+			}
+  		});  
     });
 
 	$("#AgregarMecaButton").click(function() {

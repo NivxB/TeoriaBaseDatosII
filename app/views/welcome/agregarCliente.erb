@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<title>Home</title>
+<head>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Isabella's Shop</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="#" id="homebut">Home</a></li>
+        <li class="dropdown" >
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cliente
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="active"><a href="/agregarCliente" id="">Registrarse</a></li>
+            <li><a href="#" id="listaddAuto">Agregar Vehiculo</a></li>
+            <li><a href="#" id="listmodAuto">Modificar Vehiculo</a></li>
+            <li><a href="#" id="listseguimientoCita">Seguimiento Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Programar Cita
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="listCitaRegis">Cliente Registrado</a></li>
+            <li><a href="/newCitaCliente" id="nuevaCitaCliente">Nuevo Cliente</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Asesor
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarAsesor" id="">Agregar Asesor</a></li>
+            <li><a href="#" id="listmodAsesor">Modificar Asesor</a></li>
+            <li><a href="#" id="listasigCita">Asignar Cita</a></li>
+            <li><a href="#" id="listcambiarEstado">Cambiar Estado Cita</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrar Mecanico
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/agregarMecanico" id="">Agregar Mecanico</a></li>
+            <li><a href="#" id="listmodMecanico">Modificar Mecanico</a></li>
+          </ul>
+        </li>
+        <li><a href="#" id="ConctacBut">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+		<div id="ClienteAgregado" class="form-group" style="width:800px; margin:0 auto;">
+		<h2 align="center">Agregando Cliente</h2>
+		</br>
+			Nombre: <input class="form-control" id= "nameCliente" type="text"></input>
+		</br>
+			Apellido: <input class="form-control" id= "apellidoCliente" type= "text"></input>
+		</br>
+			Direccion:	<input class="form-control" id= "dirCliente" type= "text"></input>
+		<br>
+			Email:	<input class="form-control" id= "emailCliente" type= "text"></input>
+		</br>
+			Password: <input class="form-control" id="passwordCliente" type="text">
+		</br>
+			<button align="center" id="createCliente" type="button" class="btn btn-lg btn"  >
+					<span>Crear Cliente</span>
+			</button>
+		</div>
+	</div>
+	<div id="ContPrin">
+		<h1 align="Center" style="color: #fff;">Contact</h1>
+		<p align="Center" style="color: #fff;">Hola aqui Se pondra nuestros Numeros Para todas las chicas guapas y sexis que nos quierean para haci poder tener mil novias</p>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/
+	jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files
+	as needed -->
+	<script src="assets/javascripts/bootstrap.min.js"></script>
+	<script>
+	$("#ClienteAgregado").show();
+	$("#ContPrin").hide();
+	$("#homebut").click(function(){
+			var url = "/homepage"
+  			window.location.href=url
+			
+		});
+	$("#ContactBut").click(function(){			
+			$("#homePrin").hide();
+			$("#ContPrin").show();
+		});
+	$("#createCliente").click(function(){
+  		$.ajax({
+	     		url: "/nuevoCliente",
+	      		type: "POST",
+	      		data: {nombreCliente: $("#nameCliente").val(), emailCliente: $("#emailCliente").val(), dirCliente: $("#dirCliente").val(), apellidoCliente: $("#apellidoCliente").val(),passwordCliente: $("#passwordCliente").val()},
+	      		success: function(data){                
+  				if (data != "Error"){
+  					alert(data);
+  					var url = "/homepage"
+  					window.location.href=url
+				}
+				else{
+					alert("ASD")				
+				}
+			}
+  		});
+	});</script>
+
+
+	</body>
+
+
+</html>

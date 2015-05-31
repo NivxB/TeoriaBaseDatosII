@@ -9,4 +9,6 @@ class Citum
   
 	has_and_belongs_to_many :Mecanico 
 	has_many :Servicio, inverse_of: :Citum
+	belongs_to :Auto
+	belongs_to :Asesor
 end
