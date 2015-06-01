@@ -62,22 +62,21 @@
     </div>
   </div>
 </nav>
-	<div id="RegistrarCitaRegis" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+	<div id="RegistrarCitaRegis" class="form-group" >
+  		<label for="usr">Inicio Sesion para registrar Cita:</label>
   		<input type="text" class="form-control" id="usrCita" placeholder="EMAIL">
   		<input type="password" class="form-control" id="pswCita" placeholder="PASSWORD">
   		<button id="btnCitaRegis" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
 	<div id="cambiarEstado" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para Cambiar Estado:</label>
   		<input type="text" class="form-control" id="idAsesorEstado" placeholder="Id Asesor">
-  		<input type="text" class="form-control" id="idCitaEstado" placeholder="Id Cita">
   		<button id="btncambiarEstado" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
 	<div id="seguimientoCita" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para Seguimiento cita:</label>
   		<input type="text" class="form-control" id="usrSeguimiento" placeholder="EMAIL">
   		<input type="password" class="form-control" id="pswSeguimiento" placeholder="PASSWORD">
   		<button id="btnseguimientoCita" type="button" class="btn btn-info">Ingresar</button>
@@ -85,21 +84,21 @@
 
 
 	<div id="modMecanico" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para modificar mecanico:</label>
   		<input type="text" class="form-control" id="idMecanicoModificar" placeholder="id Mecanico">
   		<button id="btnmodMecanico" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
 
 	<div id="modAsesor" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para modificar asesor:</label>
   		<input type="text" class="form-control" id="idAsesorModificar" placeholder="Id Asesor">
   		<button id="btnmodAsesor" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
 	
 	<div id="modAuto" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para modificar auto:</label>
   		<input type="text" class="form-control" id="usrmodAuto" placeholder="EMAIL">
   		<input type="password" class="form-control" id="pswmodAuto" placeholder="PASSWORD">
   		<input type="text" class="form-control" id="placamodAuto" placeholder="PLACA DEL VEHICULO">
@@ -107,15 +106,15 @@
 	</div>
 
 	<div id="addAuto" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
+  		<label for="usr">Inicio Sesion para agregar auto:</label>
   		<input type="text" class="form-control" id="usraddAuto" placeholder="EMAIL">
   		<input type="password" class="form-control" id="pswaddAuto" placeholder="PASSWORD">
   		<button id="btnaddAuto" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
 	<div id="asigCita" class="form-group" style="width:800px; margin:0 auto;">
-  		<label for="usr">Inicio Sesion:</label>
-  		<input type="text" class="form-control" id="idAsesorAsig" placeholder="EMAIL">
+  		<label for="usr">Inicio Sesion para tomar cita:</label>
+  		<input type="text" class="form-control" id="idAsesorAsig" placeholder="id Asesor">
   		<button id="btnasigCita" type="button" class="btn btn-info">Ingresar</button>
 	</div>
 
@@ -141,7 +140,7 @@
 					<div class="caption">
 						<h3>Registro</h3>
 						<p>¡Registre su automóvil o haga su propia cita ya!</p>
-						<p class="buttonFontColor"><a id="buttonGestionarVehiculo" class="btn btn-primary btn-lg" role="button">Vehículos</a> <a id="buttonRegistrarCita" class="btn btn-success btn-lg" role="button">Citas</a></p>
+						<p class="buttonFontColor"><a id="buttonGestionarVehiculos" class="btn btn-primary btn-lg" role="button">Vehículos</a> <a id="buttonRegistrarCita" class="btn btn-success btn-lg" role="button">Citas</a></p>
 					</div>
 				</div>
 			</div>
@@ -363,10 +362,10 @@ $("#addAuto").hide();
 			$("#homePrin").hide();
 			$("#modMecanico").hide();
 			$("#asigCita").hide();
-			$("#modAuto").show();
+			$("#addAuto").show();
 			$("#modAsesor").hide();
 			$("#ContPrin").hide();
-			$("#addAuto").hide();
+			$("#modAuto").hide();
 		});
 
 	$("#listmodAuto").click(function(){
@@ -528,21 +527,8 @@ $("#addAuto").hide();
 	});
 
 	$("#btnmodMecanico").click(function() {
-  		$.ajax({
-			
-	     		url: "/checkMecanico",
-	      		type: "POST",
-	      		data: {asesorId: $("#idMecanicoModificar").val()},
-	      		success: function(data){                
-  				if (data == "true"){
-  					var url = "/modificarMecanico?idMeca=" + $("#idMecanicoModificar").val()
+			  					var url = "/modificarMecanico?idMeca=" + $("#idMecanicoModificar").val()
   					window.location.href=url
-				}
-				else{
-					alert("Ese automovil no ha sido ingresado")				
-				}
-			}
-  		});
 	});
 	</script>
 	</body>

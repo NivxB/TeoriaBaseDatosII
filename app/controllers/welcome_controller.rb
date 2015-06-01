@@ -8,11 +8,11 @@ class WelcomeController < ApplicationController
   end
   
   def modificarMecanico
-    @selectMeca = Mecanico.find_by(:id=>params[:idMeca]) 
+    @selectMeca = Mecanico.find_by(:id=>params[:idMeca].to_f) 
   end
 
   def actuaMecanico
-    @selectMeca= Mecanico.find_by(:id=>params[:idMeca])
+    @selectMeca= Mecanico.find_by(:id=>params[:idMeca].to_f)
     @selectMeca.update(NombreMecanico: params[:nameMeca],ApellidoMecanico: params[:apellidoMeca],NumeroTelefono: params[:telefonoMeca])
     render plain: "Bien"
   end
@@ -24,7 +24,7 @@ class WelcomeController < ApplicationController
   end
 
   def modificarAsesor
-    @selectAsesor = Asesor.find_by(:id=>params[:idAsesor])
+    @selectAsesor = Asesor.find_by(:id=>params[:idAsesor].to_f)
   end
 
   def nuevoCliente
@@ -96,7 +96,7 @@ class WelcomeController < ApplicationController
 
       if @newCita.save
           @selectedCar.Citum.push(@newCita)
-          CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
+          CitaMailer.confirmarCita(@selectedCliente,@newCita).deliver_now
           render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"
@@ -112,7 +112,7 @@ class WelcomeController < ApplicationController
         end
         if @newCita.save
           @newAuto.Citum.push(@newCita)
-          CitaMailer.confirmarCita(@selectedCliente,@selectedCita).deliver_now
+          CitaMailer.confirmarCita(@selectedCliente,@newCita).deliver_now
           render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"
@@ -136,6 +136,7 @@ class WelcomeController < ApplicationController
 
         if @newCita.save
           @newAuto.Citum.push(@newCita)
+          CitaMailer.confirmarCita(@newCliente,@newCita).deliver_now
           render plain: "Cita creada exitosamente con el id #{@newCita.id}"
         else
           render plain: "false"

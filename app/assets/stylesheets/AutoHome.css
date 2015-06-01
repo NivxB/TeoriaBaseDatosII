@@ -42,33 +42,91 @@ text_field{
 
 .form-group{
 
-	background: #70756A;
+  background: #A7B3A1;
 	padding: 10px 10px;
 	max-width: 800px;
   max-height: 550px;
 	text-align: center;
 	position: fixed;
-	top: 150px;
-  	left: 30%; 
-  	right: 30%;
-      overflow: scroll;
+	top: 130px;
+
+    border-radius: 25px;
+    border: 2px solid #CCCCCC;
+    padding: 20px; 
+
+
+  left: 20%; 
+ 
+
+  width:50%;
+  margin:0 auto;
+}
+
+#pp{
+  background: #A7B3A1;
+  padding: 10px 10px;
+  max-width: 800px;
+  max-height: 550px;
+  text-align: center;
+  position: fixed;
+  top: 130px;
+
+    border-radius: 25px;
+    border: 2px solid #CCCCCC;
+    padding: 20px; 
+
+
+  left: 20%; 
+ 
+  overflow: scroll;
+  width:50%;
+  margin:0 auto;
+}
+
+#ss{
+  background: #A7B3A1;
+  padding: 10px 10px;
+  max-width: 800px;
+  max-height: 550px;
+  text-align: center;
+  position: fixed;
+  top: 130px;
+
+    border-radius: 25px;
+    border: 2px solid #CCCCCC;
+    padding: 20px; 
+
+
+  left: 20%; 
+ 
+  overflow: scroll;
+  width:50%;
+  margin:0 auto;
 }
 #homePrin{
-  background: #70756A;
+ background: #A7B3A1;
   position: fixed;
   top: 23%;
   left: 10%;
   right: 10%;
   height: 500px;
   text-align: center;
+
+      border-radius: 25px;
+    border: 2px solid #CCCCCC;
+    padding: 20px; 
 }
 #ContPrin{
-  background: #70756A;
+ background: #A7B3A1;
   position: fixed;
   top: 23%;
   left: 10%;
   right: 10%;
   height: 500px;
+
+      border-radius: 25px;
+    border: 2px solid #CCCCCC;
+    padding: 20px; 
   
 }
 

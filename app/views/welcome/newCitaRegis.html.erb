@@ -21,7 +21,7 @@
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#" id="homebut">Home</a></li>
+        <li><a href="#" id="homebut">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Cliente
           <span class="caret"></span></a>
@@ -36,7 +36,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Programar Cita
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" id="listCitaRegis">Cliente Registrado</a></li>
+            <li class="active"><a href="#" id="listCitaRegis">Cliente Registrado</a></li>
             <li><a href="/newCitaCliente" id="nuevaCitaCliente">Nuevo Cliente</a></li>
           </ul>
         </li>
@@ -64,18 +64,18 @@
   </div>
 </nav>
 	
-	<div id="homePrin" class="form-group" style="width:800px; margin:0 auto;">
+	<div id="pp" style="width:800px; margin:0 auto;">
 		<h1 align="Center" >Nueva cita</h1>
-		<h2 align="Center" >
+		<h2 align="Center"></h2>
 		<p align="center">
 		
 		Telefono Contacto: <input class="form-control" id= "telefonoContacto" type="text"></input>
 		<br>
-		<input class="form-control" type="radio" name="auto" value="0" onclick="selectedAuto()" checked="checked">Auto registrado  <input  class="form-control" type="radio" name="auto" value="1" onclick="selectedAuto()">Nuevo Auto
+		<input type="radio" name="auto" value="0" onclick="selectedAuto()" checked="checked">Auto registrado  <input  type="radio" name="auto" value="1" onclick="selectedAuto()">Nuevo Auto
 		<br>
 		Autos: <%= select("autos", "placas", @autosCliente.collect {|p| [ p.Placa,p.id ]})%>
 		<br>
-		<div id="newAu" style="width:800px; margin:0 auto;"> 
+		<div id="newAu" style="width:400px; margin:0 auto;"> 
 			Placa del Auto: <input  class="form-control" id= "placaAuto" type="text"></input>
 		</br>
 			Modelo del Auto: <input class="form-control" id= "modeloAuto" type= "text"></input>
@@ -87,7 +87,7 @@
 		</br>	
 			Hora: <input  class="form-control" id= "horaCita" type= "time" min="07:00:00" max="15:00:00"></input>
 		</br>
-		<input  class="form-control" type="radio" name="tipo" value="0" onclick="selected()" checked="checked">Mantenimiento  <input class="form-control" type="radio" name="tipo" value="1" onclick="selected()">Reparacion
+		<input   type="radio" name="tipo" value="0" onclick="selected()" checked="checked">Mantenimiento  <input type="radio" name="tipo" value="1" onclick="selected()">Reparacion
 
 		<br>
 		<select id="MantoSelect" name="M">
