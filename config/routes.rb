@@ -27,10 +27,11 @@ Rails.application.routes.draw do
    get '/cambiarEstado' => 'welcome#cambiarEstado'
    get '/newCitaRegis' => 'welcome#newCitaRegis'
    get '/newCitaCliente' => 'welcome#newCitaCliente'
+   get '/seguimientoCita' => 'welcome#seguimientoCita'
 
    post '/checkCita' => 'welcome#checkCita'
    post '/checkCliente' => 'welcome#checkCliente'
-      post '/checkAsesor' => 'welcome#checkAsesor'
+   post '/checkAsesor' => 'welcome#checkAsesor'
    post '/checkAuto' => 'welcome#checkAuto'
    post '/checkAsesorAuto' => 'welcome#checkAsesorAuto'
 

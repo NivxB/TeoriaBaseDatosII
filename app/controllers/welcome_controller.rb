@@ -175,7 +175,7 @@ class WelcomeController < ApplicationController
  end
 
   def checkCita
-	if Citum.where(:id => params[:idCita]).blank?
+	if Citum.where(:id => params[:idCita].to_f).blank?
 		 render plain: "false"		 
 	else
 		 render plain: "true"
@@ -191,7 +191,7 @@ class WelcomeController < ApplicationController
   end
 
    def checkAsesor
-    if Asesor.where(id: params[:idAsesor]).blank?
+    if Asesor.where(id: params[:idAsesor].to_f).blank?
      render plain: "false"     
   else
      render plain: "true"
@@ -211,7 +211,7 @@ class WelcomeController < ApplicationController
   end
 
   def checkAsesorAuto
-    if Asesor.where(:id => params[:asesorId]).blank?
+    if Asesor.where(:id => params[:asesorId].to_f).blank?
        render plain: "false"     
     else
         if Asesor.find(params[:asesorId].to_f).Citum.where(:id => params[:idCita].to_f).blank?
@@ -265,4 +265,24 @@ def setCita
   end
   render plain: "Cita asignada exitosamente"
 end
+
+  def seguimientoCita
+    @selectedCliente = Cliente.find_by(Email: params[:emailCliente])
+    @clienteAutos = @selectedCliente.Auto.all
+    @ListaCitas = Array.new()
+    @ListaEstados = Array.new()
+    @ListaFechas = Array.new()
+
+    for i in 0..(@clienteAutos.count - 1)
+      @Citas = @clienteAutos[i].Citum.all
+      for  j in 0..(@Citas.count - 1)
+        if (@Citas[j].Estado != "LISTO" or @Citas[j].Estado != "RETIRADO" or @Citas[j].Estado != "CANCELADO")
+          @ListaCitas.push(@Citas[j])
+          @ListaEstados.push(@Citas[j].Estado)
+          @ListaFechas.push(@Citas[j].FechaEstimadaEntrega)
+        end
+      end
+    end
+  end
+
 end

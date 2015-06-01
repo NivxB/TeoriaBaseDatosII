@@ -399,12 +399,12 @@ $("#addAuto").hide();
 		
   		$.ajax({
 			
-	     		url: "/checkCita",
+	     		url: "/checkCliente",
 	      		type: "POST",
-	      		data: {Email: $("#usrSeguimiento").val(), Password: $("#pswSeguimiento").val()},
+	      		data: {emailCliente: $("#usrSeguimiento").val(), passwordCliente: $("#pswSeguimiento").val()},
 	      		success: function(data){                
   				if (data == "true"){
-  					var url = "/seguimientoCita?Email=" + $("#usrSeguimiento").val()
+  					var url = "/seguimientoCita?emailCliente=" + $("#usrSeguimiento").val()
   					window.location.href=url
 				}
 				else{
@@ -420,7 +420,7 @@ $("#addAuto").hide();
 			
 	     		url: "/checkAsesor",
 	      		type: "POST",
-	      		data: {asesorId: $("#idAsesorEstado").val()},
+	      		data: {idAsesor: $("#idAsesorEstado").val()},
 	      		success: function(data){                
   				if (data == "true"){
   					var url = "/cambiarEstado?asesorId=" + $("#idAsesorEstado").val()
@@ -496,7 +496,7 @@ $("#addAuto").hide();
 			
 	     		url: "/checkAsesor",
 	      		type: "POST",
-	      		data: {asesorId: $("#idAsesorModificar").val()},
+	      		data: {idAsesor: $("#idAsesorModificar").val()},
 	      		success: function(data){                
   				if (data == "true"){
   					var url = "/modificarAsesor?idAsesor=" + $("#idAsesorModificar").val()
@@ -508,6 +508,25 @@ $("#addAuto").hide();
 			}
   		});
 	});
+
+		$("#btnasigCita").click(function() {
+  		$.ajax({
+			
+	     		url: "/checkAsesor",
+	      		type: "POST",
+	      		data: {idAsesor: $("#idAsesorAsig").val()},
+	      		success: function(data){                
+  				if (data == "true"){
+  					var url = "/asigAsesor?idAsesor=" + $("#idAsesorAsig").val()
+  					window.location.href=url
+				}
+				else{
+					alert("Ese automovil no ha sido ingresado")				
+				}
+			}
+  		});
+	});
+
 	$("#btnmodMecanico").click(function() {
   		$.ajax({
 			
